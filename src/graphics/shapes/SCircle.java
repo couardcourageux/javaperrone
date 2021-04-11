@@ -1,0 +1,55 @@
+package graphics.shapes;
+
+import java.awt.Point;
+import java.awt.Rectangle;
+
+
+public class SCircle extends Shape {
+	
+	private int radius;
+	private Point loc;
+	
+	public SCircle(int radius) {
+		this.loc = new Point(0, 0);
+		this.radius = radius;
+	}
+	
+	public SCircle(Point loc, int radius) {
+		this.loc = loc;
+		this.radius = radius;
+	}
+	
+	public int getRadius() {
+		return this.radius;
+	}
+	
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+	
+	@Override
+	public Point getLoc() {
+		return this.loc;
+	}
+	
+	@Override
+	public void setLoc(Point loc) {
+		this.loc = loc;
+	}
+	
+	@Override
+	public void translate(int dx, int dy) {
+		this.loc.translate(dx,  dy);
+	}
+	
+	@Override
+	public Rectangle getBounds() {
+		return new Rectangle(loc.x, loc.y, radius, radius);
+	}
+	
+	@Override
+	public void accept(ShapeVisitor v) {
+		v.visitCircle(this);
+	}
+
+}
