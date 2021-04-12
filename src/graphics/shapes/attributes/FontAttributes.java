@@ -3,15 +3,21 @@ package graphics.shapes.attributes;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
+import java.awt.font.FontRenderContext;
+import java.awt.image.BufferedImage;
+
 import javax.swing.JFrame;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class FontAttributes extends Attributes {
 	
 	public static final String ID = "FONTS";
 	public Font font;
 	public Color fontColor;
+	
+	public static final Graphics2D DEFAULT_GRAPHICS = (Graphics2D)  new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).getGraphics();
 	
 	public FontAttributes() {
 		this(Font.decode(Font.SANS_SERIF), Color.BLACK);
@@ -23,14 +29,8 @@ public class FontAttributes extends Attributes {
 	}
 	
 	public Rectangle getBounds(String text) {
-		JFrame frame = new JFrame("bin");
-		Graphics g = (Graphics) frame;
-		FontMetrics metrics = 
-		int hgt = metrics.getHeight();
-		int wdt = metrics.stringWidth(text);
-		Rectangle r = new Rectangle(0, 0, wdt+2, hgt+2);
-		return r;
-		
+		FontRenderContext frc= DEFAULT_GRAPHICS.getFontRenderContext();
+		return font.getStringBounds(text, frc).getBounds();
 	}
 	
 	@Override
