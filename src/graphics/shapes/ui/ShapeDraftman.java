@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import graphics.shapes.SCircle;
 import graphics.shapes.SRectangle;
+import graphics.shapes.SText;
 import graphics.shapes.ShapeVisitor;
 import graphics.shapes.attributes.ColorAttributes;
 
@@ -55,5 +56,11 @@ public class ShapeDraftman implements ShapeVisitor {
 				this.g2d.setColor(ca.filledColor);
 				this.g2d.drawOval(r.x, r.y, r.width, r.height);
 			}
+		}
+
+		@Override
+		public void visitText(SText text) {
+			// TODO Auto-generated method stub
+			
 		}
 }

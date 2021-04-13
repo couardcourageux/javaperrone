@@ -3,9 +3,13 @@ package graphics.shapes;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import graphics.shapes.attributes.FontAttributes;
+
 
 public class SText extends Shape {
 	
+	
+	private static final FontAttributes DEFAULT_FONT_ATTRIBUTES = new FontAttributes();
 	private String text;
 	private Point loc;
 	
@@ -44,7 +48,10 @@ public class SText extends Shape {
 	
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(loc.x, loc.y, radius, radius);
+		FontAttributes font = (FontAttributes) this.getAttributes("FONTS");
+		if (font == null) font = DEFAULT_FONT_ATTRIBUTES;
+		
+		return font.getBounds(this.text);
 	}
 	
 	@Override
