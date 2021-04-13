@@ -8,5 +8,7 @@ public interface ShapeVisitor {
 	void visitCircle(SCircle circle);
 	
 	void visitText(SText text);
+	
+	void visitCollection(SCollection collection);
 
 }

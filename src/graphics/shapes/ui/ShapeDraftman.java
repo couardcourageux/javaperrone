@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import graphics.shapes.SCircle;
+import graphics.shapes.SCollection;
 import graphics.shapes.SRectangle;
 import graphics.shapes.SText;
 import graphics.shapes.ShapeVisitor;
@@ -61,6 +62,11 @@ public class ShapeDraftman implements ShapeVisitor {
 		@Override
 		public void visitText(SText text) {
 			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void visitCollection(SCollection collection) {
 			
 		}
 }

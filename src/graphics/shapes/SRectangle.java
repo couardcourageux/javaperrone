@@ -16,21 +16,6 @@ public class SRectangle extends Shape {
 		this.rect = new Rectangle(loc.x, loc.y, width, heigth);
 	}
 	
-
-	@Override
-	public Point getLoc() {
-		return this.rect.getLocation();
-	}
-	
-	@Override
-	public void setLoc(Point loc) {
-		this.rect.setLocation(loc);
-	}
-	
-	@Override
-	public void translate(int dx, int dy) {
-		this.rect.translate(dx, dy);
-	}
 	
 	@Override
 	public Rectangle getBounds() {

@@ -31,20 +31,6 @@ public class SText extends Shape {
 		this.text = text;
 	}
 	
-	@Override
-	public Point getLoc() {
-		return this.loc;
-	}
-	
-	@Override
-	public void setLoc(Point loc) {
-		this.loc = loc;
-	}
-	
-	@Override
-	public void translate(int dx, int dy) {
-		this.loc.translate(dx,  dy);
-	}
 	
 	@Override
 	public Rectangle getBounds() {

@@ -21,9 +21,17 @@ public abstract class Shape {
 		return this.attributes.get(id);
 	}
 	
-	public abstract Point getLoc();	
-	public abstract void setLoc(Point loc);
-	public abstract void translate(int a, int b);
+	public Point getLoc() {	
+		return this.loc;
+	}
+	public void setLoc(Point loc) {
+		this.loc = loc;
+	}
+	public void translate(int dx, int dy) {
+		this.loc.translate(dx, dy);
+	}
+	
+	
 	public abstract Rectangle getBounds();
 	public abstract void accept(ShapeVisitor visitor);
 }
