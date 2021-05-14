@@ -21,33 +21,18 @@ public class SCollection extends Shape {
 
 	@Override
 	public Rectangle getBounds() {
-		float x=-1;
-		float y = -1;
-		float dx = -1;
-		float dy = -1;
-		
-		Iterator shapes = this.iterator();
-		while (shapes.hasNext()){
-			Shape shape = (Shape) shapes.next();
-			x = Math.min(x, shape.getLoc().x);
-			y = Math.min(y, shape.getLoc().y);
-			dx = Math.max(dx, shape.getBounds().width);
-			dy = Math.max(dy,  shape.getBounds().height);
-		}
-		
-		x = Math.min(0, ((int) x) - 1);
-		y = Math.min(0, ((int) y) - 1);
-		dx = ((int) dx) + 1;
-		dy = ((int) dy) + 1;
-		
-		Rectangle bounds = new Rectangle((int) x, (int) y, (int) dx, (int) dy);
-		return bounds;
+		Rectangle r = new Rectangle(-1, -1);
+        Iterator<Shape> it = this.iterator();
+        while (it.hasNext()) {
+            r.add(it.next().getBounds());
+        }
+        return r;
 	}
 
 	@Override
 	public void accept(ShapeVisitor visitor) {
 		// TODO Auto-generated method stub
-		
+		visitor.visitCollection(this);
 	}
 
 }
