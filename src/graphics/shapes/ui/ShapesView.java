@@ -8,6 +8,7 @@ import java.awt.Rectangle;
 import graphics.ui.View;
 import graphics.ui.Controller;
 import graphics.shapes.SRectangle;
+import graphics.shapes.SCollection;
 import graphics.shapes.ui.ShapesController;
 
 import graphics.shapes.ui.ShapeDraftman;
@@ -31,7 +32,7 @@ public class ShapesView extends View
 		
 		this.draftman.setGraphics((Graphics2D)g);
 		
-		SRectangle nRect = (SRectangle) model;
+		SCollection nRect = (SCollection) model;
 		nRect.accept(this.draftman);
 		
 		

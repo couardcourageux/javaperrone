@@ -19,6 +19,23 @@ public class SCircle extends Shape {
 		this.radius = radius;
 	}
 	
+	@Override
+	public Point getLoc() {
+        return loc;
+
+    }
+
+    @Override
+    public void setLoc(Point p) {
+        this.loc = p;
+    }
+
+    @Override
+    public void translate(int x, int y) {
+
+        loc.translate(x, y);
+    }
+	
 	public int getRadius() {
 		return this.radius;
 	}

@@ -2,12 +2,10 @@ package graphics.shapes.ui;
 
 //import graphics.shapes.SCircle;
 //import graphics.shapes.SCollection;
-import graphics.shapes.SRectangle;
-import graphics.shapes.Shape;
-//import graphics.shapes.SText;
-import graphics.shapes.attributes.ColorAttributes;
-//import graphics.shapes.attributes.FontAttributes;
-//import graphics.shapes.attributes.SelectionAttributes;
+import graphics.shapes.*;
+
+import graphics.shapes.attributes.*;
+
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,7 +17,7 @@ public class Editor extends JFrame
 {
 	ShapesView sview;
 //	SCollection model;
-	Shape model;
+	SCollection model;
 	
 	public Editor()
 	{	
@@ -42,13 +40,8 @@ public class Editor extends JFrame
 
 	
 	private void buildModel()
-	{
-		
-		SRectangle r = new SRectangle(new Point(10, 10), 20, 30);
-		r.addAttributes(new ColorAttributes(true, true, Color.RED, Color.BLACK));
-		this.model = r;
-		
-		/*this.model = new SCollection();
+	{		
+		this.model = new SCollection();
 		this.model.addAttributes(new SelectionAttributes());
 		
 		SRectangle r = new SRectangle(new Point(10,10),20,30);
@@ -77,7 +70,7 @@ public class Editor extends JFrame
 		c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.DARK_GRAY));
 		c.addAttributes(new SelectionAttributes());
 		sc.add(c);
-		this.model.add(sc);*/
+		this.model.add(sc);
 	}
 	
 	public static void main(String[] args)

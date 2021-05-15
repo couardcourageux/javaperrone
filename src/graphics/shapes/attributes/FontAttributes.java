@@ -6,9 +6,7 @@ import java.awt.Rectangle;
 import java.awt.font.FontRenderContext;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JFrame;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
+
 import java.awt.Graphics2D;
 
 public class FontAttributes extends Attributes {
@@ -35,6 +33,6 @@ public class FontAttributes extends Attributes {
 	
 	@Override
 	public String getID() {
-		return this.ID;
+		return FontAttributes.ID;
 	}
 }

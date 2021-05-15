@@ -31,6 +31,21 @@ public class SText extends Shape {
 		this.text = text;
 	}
 	
+	@Override
+	public Point getLoc() {
+        return loc;
+    }
+
+    @Override
+    public void setLoc(Point p) {
+        this.loc.setLocation(p);
+    }
+
+    @Override
+    public void translate(int x, int y) {
+        this.loc.translate(x, y);
+    }
+	
 	
 	@Override
 	public Rectangle getBounds() {

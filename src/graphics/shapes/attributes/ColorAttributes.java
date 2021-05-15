@@ -23,6 +23,6 @@ public class ColorAttributes extends Attributes {
 
 	@Override
 	public String getID() {
-		return this.ID + this.filled;
+		return ColorAttributes.ID;
 	}
 }

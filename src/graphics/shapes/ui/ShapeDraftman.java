@@ -1,29 +1,27 @@
 package graphics.shapes.ui;
 
+import graphics.shapes.attributes.*;
 
-import java.awt.Color;
+
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import graphics.shapes.SCircle;
-import graphics.shapes.SCollection;
-import graphics.shapes.SRectangle;
-import graphics.shapes.SText;
-import graphics.shapes.ShapeVisitor;
-import graphics.shapes.attributes.ColorAttributes;
-
+import graphics.shapes.*;
+import java.util.Iterator;
 
 public class ShapeDraftman implements ShapeVisitor {
 
 		private static final ColorAttributes DEFAULT_COLOR_ATTRIBUTES = new ColorAttributes();
-		Graphics2D g2d;
+		private static final SelectionAttributes DEFAULT_SELECT_ATTRIBUTES = new SelectionAttributes();
+		private Graphics2D g2d;
 		
 		public void setGraphics(Graphics2D graphics) {
 			this.g2d = graphics;
 		}
 		
+		@Override
 		public void visitRectangle(SRectangle rect) {
-			Rectangle r = rect.getBounds();
+			Rectangle r = rect.getRect();
 			
 			ColorAttributes ca = (ColorAttributes) rect.getAttributes(ColorAttributes.ID);
 			if (ca == null) ca = DEFAULT_COLOR_ATTRIBUTES;
@@ -39,9 +37,12 @@ public class ShapeDraftman implements ShapeVisitor {
 				this.g2d.drawRect(r.x,  r.y,  r.width, r.height);
 			}
 			
-			
+			SelectionAttributes sa = (SelectionAttributes) rect.getAttributes(SelectionAttributes.ID);
+			if (sa == null) sa = DEFAULT_SELECT_ATTRIBUTES;
+//			if (sa.isSelected()) this.drawHandler(r);
 		}
 		
+		@Override
 		public void visitCircle(SCircle circle) {
 			Rectangle r = circle.getBounds();
 			
@@ -57,16 +58,52 @@ public class ShapeDraftman implements ShapeVisitor {
 				this.g2d.setColor(ca.filledColor);
 				this.g2d.drawOval(r.x, r.y, r.width, r.height);
 			}
+			
+			SelectionAttributes sa = (SelectionAttributes) circle.getAttributes(SelectionAttributes.ID);
+			if (sa == null) sa = DEFAULT_SELECT_ATTRIBUTES;
+//			if (sa.isSelected()) this.drawHandler(r);
 		}
 
 		@Override
 		public void visitText(SText text) {
-			// TODO Auto-generated method stub
+			ColorAttributes ca = (ColorAttributes) text.getAttributes(ColorAttributes.ID);
+			FontAttributes fa = (FontAttributes) text.getAttributes(FontAttributes.ID);
+			
+			if (fa != null) {
+				this.g2d.setFont(fa.font);
+			}
+			Rectangle r = text.getBounds();
+			
+			if (ca == null) ca = DEFAULT_COLOR_ATTRIBUTES;
+			
+			if (ca.filled) {
+				this.g2d.setColor(ca.filledColor);
+				this.g2d.fillRect(r.x, r.y, r.width, r.height);
+			}
+			
+			if (ca.stroked) {
+				this.g2d.setColor(ca.strokedColor);
+				this.g2d.drawRect(r.x,  r.y,  r.width, r.height);
+			}
+			
+			this.g2d.setColor(fa.fontColor);
+			this.g2d.drawString(text.getText(), text.getLoc().x, text.getLoc().y);
+			
+			SelectionAttributes sa = (SelectionAttributes) text.getAttributes(SelectionAttributes.ID);
+			if (sa == null) sa = DEFAULT_SELECT_ATTRIBUTES;
+//			if (sa.isSelected()) this.drawHandler(r);
 			
 		}
 		
 		@Override
 		public void visitCollection(SCollection collection) {
+			Iterator<Shape> it = collection.iterator();
+			while (it.hasNext()) {
+				it.next().accept(this);
+			}
+			SelectionAttributes sa = (SelectionAttributes) collection.getAttributes(SelectionAttributes.ID);
+			if (sa == null) sa = DEFAULT_SELECT_ATTRIBUTES;
+//			if (sa.isSelected()) this.drawHandler(collection.getBounds());
 			
 		}
 }

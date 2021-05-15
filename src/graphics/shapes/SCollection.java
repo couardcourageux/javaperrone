@@ -11,7 +11,7 @@ public class SCollection extends Shape {
 	private Point loc;
 	private List<Shape> collection = new ArrayList<>();
 	
-	public Iterator iterator() {
+	public Iterator<Shape> iterator() {
 		return this.collection.iterator();
 	}
 	
@@ -19,6 +19,26 @@ public class SCollection extends Shape {
 		this.collection.add(shape);
 	}
 
+	
+	@Override
+    public Point getLoc() {
+        // TODO Auto-generated method stub
+        return this.loc;
+    }
+
+    @Override
+    public void setLoc(Point p) {
+        this.loc = p;
+    }
+
+    @Override
+    public void translate(int x, int y) {
+        Iterator<Shape> it = this.iterator();
+        while (it.hasNext()) {
+            it.next().translate(x, y);
+        }
+    }
+	
 	@Override
 	public Rectangle getBounds() {
 		Rectangle r = new Rectangle(-1, -1);
@@ -31,7 +51,6 @@ public class SCollection extends Shape {
 
 	@Override
 	public void accept(ShapeVisitor visitor) {
-		// TODO Auto-generated method stub
 		visitor.visitCollection(this);
 	}
 
