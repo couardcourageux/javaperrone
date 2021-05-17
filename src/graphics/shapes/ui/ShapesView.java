@@ -17,6 +17,9 @@ import graphics.shapes.ui.ShapeDraftman;
 public class ShapesView extends View
 {
 	
+	public ToolBar toolbar;
+	
+	
 	private ShapeDraftman draftman;
 	public ShapesView(Object model) {
 		super(model);
@@ -38,7 +41,9 @@ public class ShapesView extends View
 		
 	}
 	
+	@Override
 	public Controller defaultController(Object model) {
 		return new ShapesController(model);
 	}
 }
+    

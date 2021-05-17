@@ -6,10 +6,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import javax.swing.JPanel;
+
 public class Controller implements MouseListener, MouseMotionListener, KeyListener
 {
 	private Object model;
 	private View view;
+	private Object toolbar;
 		
 	
 	public Controller(Object newModel)
@@ -76,4 +79,12 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
 	public void keyReleased(KeyEvent evt)
 	{
 	}
+	
+	public Object getToolbar() {
+        return this.toolbar;
+    }
+	
+	public void setToolbar(JPanel toolbar) {
+        this.toolbar = toolbar;
+    }
 }

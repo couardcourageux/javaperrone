@@ -7,6 +7,7 @@ public abstract class View extends JPanel
 {
 	private Object model;
 	private Controller controller;
+	private JPanel toolbar;
 
 	public View(Object model)
 	{
@@ -17,6 +18,11 @@ public abstract class View extends JPanel
 		this.addMouseMotionListener(this.controller);
 		this.addKeyListener(this.controller);
 	}
+	
+	public void setToolbar(JPanel toolbar) {
+        this.toolbar = toolbar;
+        this.controller.setToolbar(toolbar);
+    }
 	
 	public void setModel(Object model)
 	{

@@ -6,18 +6,17 @@ import graphics.shapes.*;
 
 import graphics.shapes.attributes.*;
 
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Point;
-
 import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 public class Editor extends JFrame
 {
 	ShapesView sview;
 //	SCollection model;
 	SCollection model;
+	
+	ToolBar toolbar;
 	
 	public Editor()
 	{	
@@ -32,10 +31,16 @@ public class Editor extends JFrame
 		});
 		
 		this.buildModel();
-		
+		this.setLayout(new BorderLayout());
 		this.sview = new ShapesView(this.model);
 		this.sview.setPreferredSize(new Dimension(300,300));
 		this.getContentPane().add(this.sview, java.awt.BorderLayout.CENTER);
+		
+		
+		this.toolbar = new ToolBar(this.sview, this.model);
+        this.getContentPane().add(this.toolbar, java.awt.BorderLayout.PAGE_END);
+        this.sview.setToolbar(toolbar);
+		
 	}
 
 	
