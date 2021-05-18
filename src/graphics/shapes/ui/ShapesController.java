@@ -2,15 +2,18 @@ package graphics.shapes.ui;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.util.Iterator;
+import java.util.TreeMap;
 
 import graphics.ui.Controller;
 import graphics.shapes.SCollection;
 import graphics.shapes.Shape;
 import graphics.shapes.attributes.SelectionAttributes;
+import graphics.ui.View;
 
 public class ShapesController extends Controller{
 	private SCollection model;
-	
+	private Point lastPositionMouse;
+
 	public ShapesController(Object model) {
 		super(model);
 		this.model = (SCollection) model;
@@ -37,7 +40,7 @@ public class ShapesController extends Controller{
 	            } else {
 	            	selectAtt.unselect();
 	            }
-	            System.out.println("\nEst ce que la prochaine figure est selectionnée?");
+	            System.out.println("\nEst ce que la prochaine figure est selectionnï¿½e?");
 	            System.out.println(s);
 	            System.out.println(selectAtt.isSelected());
 	            System.out.println("voila la reponse :D\n");
@@ -56,5 +59,41 @@ public class ShapesController extends Controller{
 		} else {
 			System.out.println(clickedShape);
 		}
+	}
+
+	public Point getLastPositionMouse(){
+		return this.lastPositionMouse;
+	}
+
+	public void setLastPositionMouse(Point mousePosition){
+		this.lastPositionMouse = mousePosition;
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e){
+		Point mousePosition = e.getPoint();
+		Point lastPosition = getLastPositionMouse();
+		setLastPositionMouse(mousePosition);
+
+		if(lastPosition == null) {
+			lastPosition = getLastPositionMouse();
+		}
+
+		int xDif = mousePosition.x - lastPosition.x;
+		int yDif = mousePosition.y - lastPosition.y;
+
+		Shape clickedShape = getElementClicked(mousePosition);
+
+		if(clickedShape!=null) {
+			Point loc = clickedShape.getLoc();
+			clickedShape.translate(xDif, yDif);
+			View view = getView();
+			view.repaint();
+		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e){
+		setLastPositionMouse(null);
 	}
 }

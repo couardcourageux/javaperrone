@@ -32,8 +32,7 @@ public class SCircle extends Shape {
 
     @Override
     public void translate(int x, int y) {
-
-        loc.translate(x, y);
+        this.loc.translate(x, y);
     }
 	
 	public int getRadius() {
