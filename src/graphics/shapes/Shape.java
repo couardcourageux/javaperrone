@@ -11,8 +11,6 @@ public abstract class Shape {
 	private Map<String, Attributes> attributes = new TreeMap<>();
 	private Point loc;
 	
-	
-	
 	public void addAttributes(Attributes attributes) {
 		this.attributes.put(attributes.getID(), attributes);
 	}

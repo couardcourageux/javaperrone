@@ -78,7 +78,7 @@ public class ShapeDraftman implements ShapeVisitor {
 			
 			if (ca.filled) {
 				this.g2d.setColor(ca.filledColor);
-				this.g2d.fillRect(r.x, r.y, r.width, r.height);
+				this.g2d.fillRect(text.getBounds().x, text.getBounds().y, r.width, r.height);
 			}
 			
 			if (ca.stroked) {

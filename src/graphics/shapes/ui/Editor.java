@@ -13,7 +13,6 @@ import java.awt.*;
 public class Editor extends JFrame
 {
 	ShapesView sview;
-//	SCollection model;
 	SCollection model;
 	
 	ToolBar toolbar;
@@ -59,7 +58,7 @@ public class Editor extends JFrame
 		c.addAttributes(new SelectionAttributes());
 		this.model.add(c);
 		
-		SText t= new SText(new Point(100,100),"hello");
+		SText t= new SText(new Point(200,200),"WOAW");
 		t.addAttributes(new ColorAttributes(true,true,Color.YELLOW,Color.BLUE));
 		t.addAttributes(new FontAttributes());
 		t.addAttributes(new SelectionAttributes());

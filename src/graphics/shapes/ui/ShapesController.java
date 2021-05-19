@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.util.Iterator;
 import java.util.TreeMap;
 
+import graphics.shapes.SText;
 import graphics.ui.Controller;
 import graphics.shapes.SCollection;
 import graphics.shapes.Shape;
@@ -64,6 +65,14 @@ public class ShapesController extends Controller{
 		} else if (e.getClickCount() == 3) {
 		    System.out.println("triple click !!!!!!!!!");
 		}
+
+		if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1){
+			if(clickedShape != null) {
+				if(clickedShape instanceof SText){
+					System.out.println("Oui");
+				}
+			}
+		}
 	}
 
 	public Point getLastPositionMouse(){
@@ -93,6 +102,7 @@ public class ShapesController extends Controller{
 			Point loc = clickedShape.getLoc();
 			clickedShape.translate(xDif, yDif);
 			View view = getView();
+			setLastPositionMouse(e.getPoint());
 			view.repaint();
 		}
 	}
