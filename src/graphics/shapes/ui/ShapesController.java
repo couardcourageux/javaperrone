@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 import java.util.Iterator;
 import java.util.TreeMap;
 
-import graphics.shapes.SText;
+import graphics.shapes.attributes.ColorAttributes;
 import graphics.ui.Controller;
 import graphics.shapes.SCollection;
 import graphics.shapes.Shape;
@@ -42,12 +42,6 @@ public class ShapesController extends Controller{
 	            } else {
 	            	selectAtt.unselect();
 	            }
-	            System.out.println("\nEst ce que la prochaine figure est selectionn�e?");
-	            System.out.println(s);
-	            System.out.println(selectAtt.isSelected());
-	            System.out.println("voila la reponse :D\n");
-            } else {
-            	System.out.println("SelectionAttributes non defini?");
             }
         }
 	}
@@ -56,24 +50,12 @@ public class ShapesController extends Controller{
 		Point mousePosition = e.getPoint();
 		Shape clickedShape = getElementClicked(mousePosition);
 		unselectOthers(clickedShape);
-		if(clickedShape==null) {
-			System.out.println("ya r ici bro");
-		} else {
+
+		if(clickedShape != null){
 			System.out.println(clickedShape);
 		}
-		if (e.getClickCount() == 2) {
-		    System.out.println("double click !!!!!!!!!");
-		} else if (e.getClickCount() == 3) {
-		    System.out.println("triple click !!!!!!!!!");
-		}
 
-		if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1){
-			if(clickedShape != null) {
-				if(clickedShape instanceof SText){
-					System.out.println("Oui");
-				}
-			}
-		}
+		this.getView().repaint();
 	}
 
 	public Point getLastPositionMouse(){
@@ -97,15 +79,16 @@ public class ShapesController extends Controller{
 		int xDif = mousePosition.x - lastPosition.x;
 		int yDif = mousePosition.y - lastPosition.y;
 
-		Shape clickedShape = getElementClicked(mousePosition);
-
-		if(clickedShape!=null) {
-			Point loc = clickedShape.getLoc();
-			clickedShape.translate(xDif, yDif);
-			View view = getView();
-			setLastPositionMouse(e.getPoint());
-			view.repaint();
+		SCollection allShape = (SCollection) this.getModel();
+		for(Shape s:allShape.getShapes()){
+			SelectionAttributes sa = (SelectionAttributes) s.getAttributes(SelectionAttributes.ID);
+			if(sa.isSelected()) {
+				Point loc = s.getLoc();
+				s.translate(xDif, yDif);
+			}
 		}
+
+		this.getView().repaint();
 	}
 
 	@Override

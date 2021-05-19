@@ -1,10 +1,10 @@
 package graphics.shapes.ui;
 
+import graphics.shapes.Shape;
 import graphics.shapes.attributes.*;
 
 
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.*;
 
 import graphics.shapes.*;
 import java.util.Iterator;
@@ -39,7 +39,16 @@ public class ShapeDraftman implements ShapeVisitor {
 			
 			SelectionAttributes sa = (SelectionAttributes) rect.getAttributes(SelectionAttributes.ID);
 			if (sa == null) sa = DEFAULT_SELECT_ATTRIBUTES;
-//			if (sa.isSelected()) this.drawHandler(r);
+
+			if (sa.isSelected()){
+				this.g2d.setColor(Color.BLACK);
+				this.g2d.drawRect(r.x - 10, r.y - 10, 7, 7);
+				this.g2d.drawRect(r.x + r.width, r.y + r.height, 7, 7);
+				this.g2d.setColor(Color.PINK);
+				this.g2d.fillRect(r.x - 10, r.y - 10, 7, 7);
+				this.g2d.fillRect(r.x + r.width, r.y + r.height, 7, 7);
+
+			}
 		}
 		
 		@Override
@@ -55,13 +64,21 @@ public class ShapeDraftman implements ShapeVisitor {
 			}
 			
 			if (ca.stroked) {
-				this.g2d.setColor(ca.filledColor);
+				this.g2d.setColor(ca.strokedColor);
 				this.g2d.drawOval(r.x, r.y, r.width, r.height);
 			}
 			
 			SelectionAttributes sa = (SelectionAttributes) circle.getAttributes(SelectionAttributes.ID);
 			if (sa == null) sa = DEFAULT_SELECT_ATTRIBUTES;
-//			if (sa.isSelected()) this.drawHandler(r);
+			if (sa.isSelected()){
+				this.g2d.setColor(Color.BLACK);
+				this.g2d.drawRect(r.x - 10, r.y - 10, 7, 7);
+				this.g2d.drawRect(r.x + r.width, r.y + r.height, 7, 7);
+				this.g2d.setColor(Color.PINK);
+				this.g2d.fillRect(r.x - 10, r.y - 10, 7, 7);
+				this.g2d.fillRect(r.x + r.width, r.y + r.height, 7, 7);
+
+			}
 		}
 
 		@Override
@@ -91,8 +108,16 @@ public class ShapeDraftman implements ShapeVisitor {
 			
 			SelectionAttributes sa = (SelectionAttributes) text.getAttributes(SelectionAttributes.ID);
 			if (sa == null) sa = DEFAULT_SELECT_ATTRIBUTES;
-//			if (sa.isSelected()) this.drawHandler(r);
-			
+
+			if (sa.isSelected()){
+				this.g2d.setColor(Color.BLACK);
+				this.g2d.drawRect(r.x - 10, r.y - 10, 7, 7);
+				this.g2d.drawRect(r.x + r.width, r.y + r.height, 7, 7);
+				this.g2d.setColor(Color.PINK);
+				this.g2d.fillRect(r.x - 10, r.y - 10, 7, 7);
+				this.g2d.fillRect(r.x + r.width, r.y + r.height, 7, 7);
+
+			}
 		}
 		
 		@Override
@@ -103,7 +128,17 @@ public class ShapeDraftman implements ShapeVisitor {
 			}
 			SelectionAttributes sa = (SelectionAttributes) collection.getAttributes(SelectionAttributes.ID);
 			if (sa == null) sa = DEFAULT_SELECT_ATTRIBUTES;
-//			if (sa.isSelected()) this.drawHandler(collection.getBounds());
+
+			if (sa.isSelected()){
+				Rectangle r = collection.getBounds();
+				this.g2d.setColor(Color.BLACK);
+				this.g2d.drawRect(r.x - 10, r.y - 10, 7, 7);
+				this.g2d.drawRect(r.x + r.width, r.y + r.height, 7, 7);
+				this.g2d.setColor(Color.PINK);
+				this.g2d.fillRect(r.x - 10, r.y - 10, 7, 7);
+				this.g2d.fillRect(r.x + r.width, r.y + r.height, 7, 7);
+
+			}
 			
 		}
 		public void visitPolygon(SPolygon polygon) {
@@ -123,6 +158,16 @@ public class ShapeDraftman implements ShapeVisitor {
 			
 			SelectionAttributes sa = (SelectionAttributes) polygon.getAttributes(SelectionAttributes.ID);
 			if (sa == null) sa = DEFAULT_SELECT_ATTRIBUTES;
-//			if (sa.isSelected()) this.drawHandler(r);
+
+			if (sa.isSelected()){
+				Rectangle r = polygon.getBounds();
+				this.g2d.setColor(Color.BLACK);
+				this.g2d.drawRect(r.x - 10, r.y - 10, 7, 7);
+				this.g2d.drawRect(r.x + r.width, r.y + r.height, 7, 7);
+				this.g2d.setColor(Color.PINK);
+				this.g2d.fillRect(r.x - 10, r.y - 10, 7, 7);
+				this.g2d.fillRect(r.x + r.width, r.y + r.height, 7, 7);
+
+			}
 		}
 }
