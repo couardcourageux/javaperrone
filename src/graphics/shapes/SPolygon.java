@@ -63,6 +63,11 @@ public class SPolygon extends Shape{
 	}
 	
 	@Override
+	public void resize(float ratio) {
+		
+	}
+	
+	@Override
 	public void accept(ShapeVisitor v) {
 		v.visitPolygon(this);
 	}

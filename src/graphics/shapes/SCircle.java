@@ -50,6 +50,11 @@ public class SCircle extends Shape {
 	}
 	
 	@Override
+	public void resize(float ratio) {
+		this.radius = (int) (ratio * (float) this.radius);
+	}
+	
+	@Override
 	public void accept(ShapeVisitor v) {
 		v.visitCircle(this);
 	}

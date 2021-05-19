@@ -56,6 +56,15 @@ public class SText extends Shape {
 	}
 	
 	@Override
+	public void resize(float ratio) {
+		FontAttributes font = (FontAttributes) this.getAttributes("FONTS");
+		if (font == null) font = DEFAULT_FONT_ATTRIBUTES;
+		
+		font.resize(ratio);
+		this.addAttributes(font);
+	}
+	
+	@Override
 	public void accept(ShapeVisitor v) {
 		v.visitText(this);
 	}

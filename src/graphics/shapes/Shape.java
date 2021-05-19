@@ -24,4 +24,5 @@ public abstract class Shape {
 	public abstract void translate(int dx, int dy);
 	public abstract Rectangle getBounds();
 	public abstract void accept(ShapeVisitor visitor);
+	public abstract void resize(float ratio);
 }

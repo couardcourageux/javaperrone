@@ -43,6 +43,14 @@ public class SRectangle extends Shape {
 	
 	
 	@Override
+	public void resize(float ratio) {
+		int w =(int) (ratio * (float)this.getRect().width);
+		int h = (int) (ratio * (float)this.getRect().height);
+		Point loc = this.getLoc();
+		this.rect = new Rectangle(loc.x, loc.y, w, h);
+	}
+	
+	@Override
 	public void accept(ShapeVisitor v) {
 		v.visitRectangle(this);
 	}

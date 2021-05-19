@@ -52,11 +52,20 @@ public class SCollection extends Shape {
 	public List<Shape> getShapes(){
 	    return this.collection;
     }
+	
+	@Override
+	public void resize(float ratio) {
+		Iterator<Shape> it = this.iterator();
+        while (it.hasNext()) {
+            it.next().resize(ratio);
+        }
+	}
 
 	@Override
 	public void accept(ShapeVisitor visitor) {
 		visitor.visitCollection(this);
 	}
+	
 
 	public void clear() {
 		this.collection.clear();
