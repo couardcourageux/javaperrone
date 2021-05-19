@@ -54,4 +54,9 @@ public class SCollection extends Shape {
 		visitor.visitCollection(this);
 	}
 
+	public void clear() {
+		this.collection.clear();
+		
+	}
+
 }

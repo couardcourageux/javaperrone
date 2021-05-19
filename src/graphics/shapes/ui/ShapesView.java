@@ -24,6 +24,7 @@ public class ShapesView extends View
 	public ShapesView(Object model) {
 		super(model);
 		this.draftman = new ShapeDraftman();
+		this.setFocusable(true); 
 	}
 	
 	@Override

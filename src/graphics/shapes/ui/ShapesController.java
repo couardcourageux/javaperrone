@@ -1,6 +1,7 @@
 package graphics.shapes.ui;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyEvent;
 import java.util.Iterator;
 import java.util.TreeMap;
 
@@ -110,5 +111,14 @@ public class ShapesController extends Controller{
 	@Override
 	public void mouseReleased(MouseEvent e){
 		setLastPositionMouse(null);
+	}
+	@Override
+	public void keyPressed(KeyEvent e){
+		if (e.getKeyChar() == 's') {
+			this.model.clear();
+			System.out.println("cleared");
+			View view = getView();
+			view.repaint();
+		}
 	}
 }
