@@ -59,7 +59,7 @@ public class SPolygon extends Shape{
 		for(int i = 0; i< this.poly.npoints; i++) {
 			if (this.poly.ypoints[i] < minY) minY = this.poly.ypoints[i];
 		}
-		return new Rectangle(minX, minY, maxX, maxY);
+		return new Rectangle(minX, minY, maxX-minX, maxY-minY);
 	}
 	
 	@Override
