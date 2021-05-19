@@ -49,6 +49,10 @@ public class SCollection extends Shape {
         return r;
 	}
 
+	public List<Shape> getShapes(){
+	    return this.collection;
+    }
+
 	@Override
 	public void accept(ShapeVisitor visitor) {
 		visitor.visitCollection(this);

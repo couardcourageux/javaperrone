@@ -26,10 +26,9 @@ public class SelectionAttributes extends Attributes {
 	}
 	
 	public void toggleSelection() {
-		this.selected = this.selected != true;
+		this.selected = !this.selected;
 	}
 
-	
 	@Override
 	public String getID() {
 		return SelectionAttributes.ID;
