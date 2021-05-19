@@ -34,7 +34,11 @@ public class SPolygon extends Shape{
     @Override
     public void translate(int x, int y) {
 
-        loc.translate(x, y);
+        this.loc.translate(x, y);
+        for(int i = 0; i< this.poly.npoints; i++) {
+        	this.poly.xpoints[i]+=x;
+        	this.poly.ypoints[i]+=y;
+        }
     }
 	
 	@Override
