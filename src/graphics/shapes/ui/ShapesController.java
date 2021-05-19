@@ -31,6 +31,17 @@ public class ShapesController extends Controller{
         }
         return null;
 	}
+	
+	public SCollection getSelection() {
+		SCollection selection = new SCollection();
+		Iterator<Shape> iterator = this.model.iterator();
+        while (iterator.hasNext()) {
+            selection.add(iterator.next());
+        }
+        return selection;
+	}
+		
+	
 	public void unselectOthers(Shape selected){
 		Iterator<Shape> iterator = this.model.iterator();
         while (iterator.hasNext()) {
