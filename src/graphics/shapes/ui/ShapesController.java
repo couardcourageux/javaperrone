@@ -15,10 +15,12 @@ import graphics.ui.View;
 public class ShapesController extends Controller{
 	private SCollection model;
 	private Point lastPositionMouse;
+	private boolean keyPress;
 
 	public ShapesController(Object model) {
 		super(model);
 		this.model = (SCollection) model;
+		this.keyPress = false;
 		}
 	
 	public Shape getElementClicked(Point p) {
@@ -67,7 +69,13 @@ public class ShapesController extends Controller{
 	public void mouseClicked(MouseEvent e) {
 		Point mousePosition = e.getPoint();
 		Shape clickedShape = getElementClicked(mousePosition);
-		unselectOthers(clickedShape);
+
+		if(!getKeyPress())
+			unselectOthers(clickedShape);
+		else if (clickedShape != null) {
+			SelectionAttributes sa = (SelectionAttributes) clickedShape.getAttributes(SelectionAttributes.ID);
+			sa.toggleSelection();
+		}
 
 		if(clickedShape != null){
 			System.out.println(clickedShape);
@@ -83,6 +91,10 @@ public class ShapesController extends Controller{
 	public void setLastPositionMouse(Point mousePosition){
 		this.lastPositionMouse = mousePosition;
 	}
+
+	public void setKeyPress(boolean value) { this.keyPress = value; }
+
+	public boolean getKeyPress() { return this.keyPress; }
 
 	@Override
 	public void mouseDragged(MouseEvent e){
@@ -113,6 +125,7 @@ public class ShapesController extends Controller{
 	public void mouseReleased(MouseEvent e){
 		setLastPositionMouse(null);
 	}
+
 	@Override
 	public void keyPressed(KeyEvent e){
 		if (e.getKeyChar() == 's') {
@@ -121,5 +134,18 @@ public class ShapesController extends Controller{
 			View view = getView();
 			view.repaint();
 		}
+
+		if (e.getKeyCode() == 16){
+			setKeyPress(true);
+		}
 	}
+
+	@Override
+	public void keyReleased(KeyEvent e){
+		if(e.getKeyCode() == 16){
+			setKeyPress(false);
+		}
+	}
+
+
 }
