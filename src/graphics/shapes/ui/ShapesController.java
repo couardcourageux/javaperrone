@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.util.Iterator;
 import java.util.TreeMap;
 
+import graphics.shapes.SText;
 import graphics.shapes.attributes.ColorAttributes;
 import graphics.ui.Controller;
 import graphics.shapes.SCollection;
@@ -12,15 +13,16 @@ import graphics.shapes.Shape;
 import graphics.shapes.attributes.SelectionAttributes;
 import graphics.ui.View;
 
+import javax.swing.*;
+
 public class ShapesController extends Controller{
 	private SCollection model;
 	private Point lastPositionMouse;
-	private boolean keyPress;
+	public final static String LABEL_ENTER_SCALE_FACTOR = "Salut toi";
 
 	public ShapesController(Object model) {
 		super(model);
 		this.model = (SCollection) model;
-		this.keyPress = false;
 		}
 	
 	public Shape getElementClicked(Point p) {
@@ -52,7 +54,7 @@ public class ShapesController extends Controller{
 		Point mousePosition = e.getPoint();
 		Shape clickedShape = getElementClicked(mousePosition);
 
-		if(!getKeyPress())
+		if(!e.isShiftDown())
 			unselectOthers(clickedShape);
 		else if (clickedShape != null) {
 			SelectionAttributes sa = (SelectionAttributes) clickedShape.getAttributes(SelectionAttributes.ID);
@@ -61,6 +63,11 @@ public class ShapesController extends Controller{
 
 		if(clickedShape != null){
 			System.out.println(clickedShape);
+		}
+
+		if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && clickedShape instanceof SText){
+			String result = JOptionPane.showInputDialog(LABEL_ENTER_SCALE_FACTOR);
+			((SText) clickedShape).setText(result);
 		}
 
 		this.getView().repaint();
@@ -73,10 +80,6 @@ public class ShapesController extends Controller{
 	public void setLastPositionMouse(Point mousePosition){
 		this.lastPositionMouse = mousePosition;
 	}
-
-	public void setKeyPress(boolean value) { this.keyPress = value; }
-
-	public boolean getKeyPress() { return this.keyPress; }
 
 	@Override
 	public void mouseDragged(MouseEvent e){
@@ -115,17 +118,6 @@ public class ShapesController extends Controller{
 			System.out.println("cleared");
 			View view = getView();
 			view.repaint();
-		}
-
-		if (e.getKeyCode() == 16){
-			setKeyPress(true);
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e){
-		if(e.getKeyCode() == 16){
-			setKeyPress(false);
 		}
 	}
 
