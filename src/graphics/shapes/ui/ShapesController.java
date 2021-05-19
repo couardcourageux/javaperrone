@@ -36,7 +36,14 @@ public class ShapesController extends Controller{
 		SCollection selection = new SCollection();
 		Iterator<Shape> iterator = this.model.iterator();
         while (iterator.hasNext()) {
-            selection.add(iterator.next());
+        	Shape s = iterator.next();
+        	SelectionAttributes selectAtt = (SelectionAttributes)s.getAttributes("SELECTION");
+        	if (selectAtt != null) {
+        		if (selectAtt.isSelected()) {
+        			selection.add(s);
+        		}
+        	}
+            
         }
         return selection;
 	}

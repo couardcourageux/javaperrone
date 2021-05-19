@@ -19,7 +19,9 @@ public class ToolBar extends JPanel implements ActionListener {
 	ShapesView sview;
 	SCollection model;
 	
-	private final String RESIZE = "riendutout";
+	private final String RESIZE = "resize objects";
+	private final String UNSELECT = "unselect all objects";
+	
 	
 	public ToolBar(ShapesView view, SCollection model) {
 		super(new BorderLayout());
@@ -45,15 +47,29 @@ public class ToolBar extends JPanel implements ActionListener {
 		return button;
 	}
 	
-	protected void addButtons(JToolBar toolbar) {
-		JButton btn_size = makeButton("resize", RESIZE, "resize a shape object" );
+	protected void addButton(JToolBar toolbar, String name, String command, String descrip) {
+		JButton btn_size = makeButton( name, command, descrip);
 		toolbar.add(btn_size);
 		toolbar.add(Box.createVerticalStrut(5));
 		toolbar.add(Box.createHorizontalStrut(5));
 	}
 	
+	protected void addButtons(JToolBar toolbar) {
+		this.addButton(toolbar, "resize", RESIZE, "resize a shape object");
+		this.addButton(toolbar, "unselect all", UNSELECT, "unselect all objects");
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
+		
+		if (cmd.equals(RESIZE)) {
+			ShapesController controller = (ShapesController) this.sview.defaultController(this.model);
+			SCollection selection = controller.getSelection();
+			
+			ShapesController rs_controller = (ShapesController) this.sview.defaultController(selection);
+			
+			Resizer resizer = new Resizer(selection, this.sview, rs_controller);
+		}
 		
 	}
 	
