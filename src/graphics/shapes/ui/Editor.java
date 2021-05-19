@@ -51,17 +51,20 @@ public class Editor extends JFrame
 		SRectangle r = new SRectangle(new Point(200,200),20,30);
 		r.addAttributes(new ColorAttributes(true,false,Color.BLUE,Color.BLUE));
 		r.addAttributes(new SelectionAttributes());
+		r.addAttributes(new DrawableAttribute());
 		this.model.add(r);
 		
 		SCircle c = new SCircle(new Point(100,100),10);
 		c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.BLUE));
 		c.addAttributes(new SelectionAttributes());
+		c.addAttributes(new DrawableAttribute());
 		this.model.add(c);
 		
 		SText t= new SText(new Point(200,200),"WOAW");
 		t.addAttributes(new ColorAttributes(true,true,Color.YELLOW,Color.BLUE));
 		t.addAttributes(new FontAttributes());
 		t.addAttributes(new SelectionAttributes());
+		t.addAttributes(new DrawableAttribute());
 		this.model.add(t);
 		
 		SCollection sc = new SCollection();
@@ -69,16 +72,19 @@ public class Editor extends JFrame
 		r= new SRectangle(new Point(20,30),30,30);
 		r.addAttributes(new ColorAttributes(true,false,Color.MAGENTA,Color.BLUE));
 		r.addAttributes(new SelectionAttributes());
+		r.addAttributes(new DrawableAttribute());
 		sc.add(r);
 		c = new SCircle(new Point(150,100),30);
 		c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.DARK_GRAY));
 		c.addAttributes(new SelectionAttributes());
+		c.addAttributes(new DrawableAttribute());
 		sc.add(c);
 		this.model.add(sc);
 		
 		SPolygon p= new SPolygon(new int[] {160, 180, 190, 200, 220, 205,210, 190,165,175},new int[] {160, 160, 140, 160, 160, 175, 190,180,190,175,},10);
 		p.addAttributes(new ColorAttributes(true,true,Color.YELLOW,Color.BLUE));
 		p.addAttributes(new SelectionAttributes());
+		p.addAttributes(new DrawableAttribute());
 		this.model.add(p);
 	}
 	

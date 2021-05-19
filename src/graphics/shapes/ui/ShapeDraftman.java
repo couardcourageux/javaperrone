@@ -26,7 +26,6 @@ public class ShapeDraftman implements ShapeVisitor {
 			ColorAttributes ca = (ColorAttributes) rect.getAttributes(ColorAttributes.ID);
 			if (ca == null) ca = DEFAULT_COLOR_ATTRIBUTES;
 			
-			
 			if (ca.filled) {
 				this.g2d.setColor(ca.filledColor);
 				this.g2d.fillRect(r.x,  r.y,  r.width, r.height);

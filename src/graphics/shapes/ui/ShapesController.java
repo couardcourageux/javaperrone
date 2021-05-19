@@ -119,6 +119,20 @@ public class ShapesController extends Controller{
 			View view = getView();
 			view.repaint();
 		}
+		if (e.getKeyChar() == 'd') {
+			SCollection toClear = new SCollection();
+			Iterator<Shape> iterator = this.model.iterator();
+	        while (iterator.hasNext()) {
+	        	Shape s = iterator.next();
+	        	SelectionAttributes sa = (SelectionAttributes) s.getAttributes(SelectionAttributes.ID);
+	        	if(sa.isSelected()) {
+	        		toClear.add(s);
+	        	}
+	        }
+	        toClear.clear();
+			View view = getView();
+			view.repaint();
+		}
 	}
 
 
