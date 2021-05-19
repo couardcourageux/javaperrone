@@ -52,7 +52,7 @@ public class SText extends Shape {
 		FontAttributes font = (FontAttributes) this.getAttributes("FONTS");
 		if (font == null) font = DEFAULT_FONT_ATTRIBUTES;
 		
-		return font.getBounds(this.text);
+		return font.getBounds(this.text, this.loc);
 	}
 	
 	@Override

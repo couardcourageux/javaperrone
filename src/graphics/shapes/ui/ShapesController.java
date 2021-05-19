@@ -59,6 +59,11 @@ public class ShapesController extends Controller{
 		} else {
 			System.out.println(clickedShape);
 		}
+		if (e.getClickCount() == 2) {
+		    System.out.println("double click !!!!!!!!!");
+		} else if (e.getClickCount() == 3) {
+		    System.out.println("triple click !!!!!!!!!");
+		}
 	}
 
 	public Point getLastPositionMouse(){

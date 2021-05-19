@@ -2,12 +2,13 @@ package graphics.shapes.attributes;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Rectangle;
-import java.awt.font.FontRenderContext;
 import java.awt.image.BufferedImage;
 
 
 import java.awt.Graphics2D;
+import java.awt.Point;
 
 public class FontAttributes extends Attributes {
 	
@@ -26,9 +27,11 @@ public class FontAttributes extends Attributes {
 		this.fontColor = fontColor;
 	}
 	
-	public Rectangle getBounds(String text) {
-		FontRenderContext frc= DEFAULT_GRAPHICS.getFontRenderContext();
-		return font.getStringBounds(text, frc).getBounds();
+	public Rectangle getBounds(String text, Point loc) {
+		BufferedImage off_Image = new BufferedImage(100, 50, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = off_Image.createGraphics();
+        FontMetrics m = g2.getFontMetrics(this.font);
+        return new Rectangle(loc.x, loc.y-m.getHeight(), m.stringWidth(text), m.getHeight());
 	}
 	
 	@Override

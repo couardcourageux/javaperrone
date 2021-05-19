@@ -11,4 +11,6 @@ public interface ShapeVisitor {
 	
 	void visitCollection(SCollection collection);
 
+	void visitPolygon(SPolygon sPolygon);
+
 }

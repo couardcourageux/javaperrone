@@ -76,6 +76,11 @@ public class Editor extends JFrame
 		c.addAttributes(new SelectionAttributes());
 		sc.add(c);
 		this.model.add(sc);
+		
+		SPolygon p= new SPolygon(new int[] {160, 180, 190, 200, 220, 205,210, 190,165,175},new int[] {160, 160, 140, 160, 160, 175, 190,180,190,175,},10);
+		p.addAttributes(new ColorAttributes(true,true,Color.YELLOW,Color.BLUE));
+		p.addAttributes(new SelectionAttributes());
+		this.model.add(p);
 	}
 	
 	public static void main(String[] args)

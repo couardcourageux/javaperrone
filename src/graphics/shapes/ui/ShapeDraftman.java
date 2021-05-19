@@ -106,4 +106,23 @@ public class ShapeDraftman implements ShapeVisitor {
 //			if (sa.isSelected()) this.drawHandler(collection.getBounds());
 			
 		}
+		public void visitPolygon(SPolygon polygon) {
+
+			ColorAttributes ca = (ColorAttributes) polygon.getAttributes(ColorAttributes.ID);
+			if (ca == null) ca = DEFAULT_COLOR_ATTRIBUTES;
+			
+			if (ca.filled) {
+				this.g2d.setColor(ca.filledColor);
+				this.g2d.fill(polygon.poly);
+			}
+			
+			if (ca.stroked) {
+				this.g2d.setColor(ca.filledColor);
+				this.g2d.draw(polygon.poly);
+			}
+			
+			SelectionAttributes sa = (SelectionAttributes) polygon.getAttributes(SelectionAttributes.ID);
+			if (sa == null) sa = DEFAULT_SELECT_ATTRIBUTES;
+//			if (sa.isSelected()) this.drawHandler(r);
+		}
 }
