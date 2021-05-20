@@ -156,6 +156,19 @@ public class ShapesController extends Controller{
 			View view = getView();
 			view.repaint();
 		}
+/*		if (e.getKeyChar() == 't') {
+			System.out.println("t comme test");
+			Iterator<Shape> iterator = this.model.iterator();
+	        while (iterator.hasNext()) {
+	        	Shape s = iterator.next();
+	        	System.out.println(s);
+	        	System.out.println(s.getBounds().x);
+	        	System.out.println(s.getBounds().y);
+	        	System.out.println(s.getBounds().width);
+	        	System.out.println(s.getBounds().height);
+	        	System.out.println("fin forme");
+	        }
+		}*/
 	}
 
 }

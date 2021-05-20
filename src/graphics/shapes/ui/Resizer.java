@@ -47,7 +47,7 @@ public class Resizer extends JFrame implements ActionListener {
 	        this.jp.add(new JLabel("Ratio:"));
 	        this.jp.add(jt_r);
 	        
-	        this.disc.add(new JLabel("Polygons are note resizable"));
+	        //this.disc.add(new JLabel("Polygons are note resizable"));
 	        
 	        this.jf.setLayout(new GridLayout(6, 0));
 	        
