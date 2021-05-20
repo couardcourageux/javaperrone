@@ -71,6 +71,7 @@ public class Resizer extends JFrame implements ActionListener {
 	    		this.selection.resize(ratio);
 	    		
 	    		this.sview.invalidate();
+	    		this.sview.repaint();
 	            this.jf.setVisible(false);
 	            this.jf.dispose();
 	    	}

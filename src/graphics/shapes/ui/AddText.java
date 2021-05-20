@@ -36,7 +36,7 @@ public class AddText extends Add_prompt {
 		
 		
 		this.jf  = new JFrame();
-		this.jf.setSize(400, 200);
+		this.jf.setSize(800, 400);
 		this.jf.setTitle("Add a rectangle");
 		this.jf.setVisible(true);
 		
@@ -89,6 +89,8 @@ public class AddText extends Add_prompt {
 			
 			this.jf.setVisible(false);
 			this.sview.invalidate();
+			this.sview.repaint();
+			this.jf.dispose();
 		}
 		else if (e.getSource() == this.canc) {
 			this.jf.setVisible(false);
