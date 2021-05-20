@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 
 import graphics.shapes.SCollection;
@@ -13,6 +14,7 @@ public abstract class Add_prompt extends JFrame implements  ActionListener {
 
 	
 	public JButton valid, canc;
+	public JCheckBox filled, strocked;
 	private JFrame jf;
 	private ShapesView sview;
 	private Controller controller;
