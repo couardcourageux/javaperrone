@@ -92,9 +92,6 @@ public class ShapesController extends Controller{
 				SelectionAttributes sa = (SelectionAttributes) clickedShape.getAttributes(SelectionAttributes.ID);
 				sa.toggleSelection();
 			}
-	
-			unselectOthers(clickedShape);
-
 		
 			if(clickedShape != null){
 				System.out.println(clickedShape);
