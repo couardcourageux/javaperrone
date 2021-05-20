@@ -80,28 +80,29 @@ public class ShapesController extends Controller{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Point mousePosition = e.getPoint();
-		Shape clickedShape = getElementClicked(mousePosition);
-
-		if(!e.isShiftDown())
+		if(!drawPoly) {
+			Shape clickedShape = getElementClicked(mousePosition);
+	
+			if(!e.isShiftDown())
+				unselectOthers(clickedShape);
+			else if (clickedShape != null) {
+				SelectionAttributes sa = (SelectionAttributes) clickedShape.getAttributes(SelectionAttributes.ID);
+				sa.toggleSelection();
+			}
+	
 			unselectOthers(clickedShape);
-		else if (clickedShape != null) {
-			SelectionAttributes sa = (SelectionAttributes) clickedShape.getAttributes(SelectionAttributes.ID);
-			sa.toggleSelection();
+	
+	
+			if(clickedShape != null){
+				System.out.println(clickedShape);
+			}
+	
+			if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && clickedShape instanceof SText){
+				String result = JOptionPane.showInputDialog(LABEL_ENTER_SCALE_FACTOR);
+				((SText) clickedShape).setText(result);
+			}
 		}
-
-		unselectOthers(clickedShape);
-
-
-		if(clickedShape != null){
-			System.out.println(clickedShape);
-		}
-
-		if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && clickedShape instanceof SText){
-			String result = JOptionPane.showInputDialog(LABEL_ENTER_SCALE_FACTOR);
-			((SText) clickedShape).setText(result);
-		}
-		System.out.println(drawPoly);
-		if(drawPoly) {
+		else {
 			if(e.getClickCount() != 2) {
 				System.out.println("un point de plus pour le poly");
 				polyInProgress.poly.addPoint(mousePosition.x, mousePosition.y);
