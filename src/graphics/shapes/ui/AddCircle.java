@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import graphics.shapes.SCircle;
 import graphics.shapes.SCollection;
 import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.attributes.DrawableAttribute;
+import graphics.shapes.attributes.SelectionAttributes;
 
 public class AddCircle extends Add_prompt {
 	
@@ -77,6 +79,8 @@ public class AddCircle extends Add_prompt {
 			SCircle c = new SCircle(this.pt, Integer.parseInt(jt_r.getText()));
 			
 			c.addAttributes(new ColorAttributes(filled.isSelected(), strocked.isSelected(), jc.getColor(), jc.getColor()));
+			c.addAttributes(new SelectionAttributes());
+			c.addAttributes(new DrawableAttribute());
 			this.collection.add(c);
 			
 			this.jf.setVisible(false);

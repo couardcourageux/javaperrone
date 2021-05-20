@@ -23,11 +23,11 @@ public class ToolBar extends JPanel implements ActionListener{
 	ShapesController controller;
 	
 	private final String RESIZE = "resize objects";
+	private final String UNSELECT = "unselect all objects";
+	
 	private final String CIRCLE = "new circle";
 	private final String TEXT = "new text";
 	private final String RECTANGLE = "new rectangle";
-	
-	private final String UNSELECT = "unselect all objects";
 	private final String POLYGON = "create a new polygon";
 	
 	public ToolBar(ShapesView view, SCollection model) {

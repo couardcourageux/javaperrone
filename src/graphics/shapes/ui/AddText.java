@@ -17,6 +17,9 @@ import graphics.shapes.SCollection;
 import graphics.shapes.SRectangle;
 import graphics.shapes.SText;
 import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.attributes.DrawableAttribute;
+import graphics.shapes.attributes.FontAttributes;
+import graphics.shapes.attributes.SelectionAttributes;
 
 public class AddText extends Add_prompt {
 	
@@ -79,6 +82,9 @@ public class AddText extends Add_prompt {
 			SText t = new SText(this.pt, jt_t.getText());
 			
 			t.addAttributes(new ColorAttributes(filled.isSelected(), strocked.isSelected(), jc.getColor(), jc.getColor()));
+			t.addAttributes(new SelectionAttributes());
+			t.addAttributes(new FontAttributes());
+			t.addAttributes(new DrawableAttribute());
 			this.collection.add(t);
 			
 			this.jf.setVisible(false);

@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 import graphics.shapes.SCollection;
 import graphics.shapes.SRectangle;
 import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.attributes.DrawableAttribute;
+import graphics.shapes.attributes.SelectionAttributes;
 
 public class AddRectangle extends Add_prompt {
 	
@@ -82,6 +84,8 @@ public class AddRectangle extends Add_prompt {
 			SRectangle r = new SRectangle(this.pt, Integer.parseInt(jt_w.getText()), Integer.parseInt(jt_h.getText()));
 			
 			r.addAttributes(new ColorAttributes(filled.isSelected(), strocked.isSelected(), jc.getColor(), jc.getColor()));
+			r.addAttributes(new SelectionAttributes());
+			r.addAttributes(new DrawableAttribute());
 			this.collection.add(r);
 			
 			this.jf.setVisible(false);
