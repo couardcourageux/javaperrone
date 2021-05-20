@@ -15,10 +15,10 @@ public abstract class Add_prompt extends JFrame implements  ActionListener {
 	
 	public JButton valid, canc;
 	public JCheckBox filled, strocked;
-	private JFrame jf;
-	private ShapesView sview;
-	private Controller controller;
-	private SCollection collection;
+	protected JFrame jf;
+	protected ShapesView sview;
+	protected Controller controller;
+	protected SCollection collection;
 	
 	protected Controller defaultController(Object model) {
 		return new Controller(model);
