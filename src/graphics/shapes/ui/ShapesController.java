@@ -3,10 +3,8 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 import java.util.Iterator;
-import java.util.TreeMap;
 
 import graphics.shapes.SText;
-import graphics.shapes.attributes.ColorAttributes;
 import graphics.ui.Controller;
 import graphics.shapes.SCollection;
 import graphics.shapes.Shape;
@@ -136,25 +134,22 @@ public class ShapesController extends Controller{
 	}
 	@Override
 	public void keyPressed(KeyEvent e){
-		if (e.getKeyChar() == 's') {
+		if (e.getKeyCode() == KeyEvent.VK_S) {
 			this.model.clear();
 			System.out.println("cleared");
 			View view = getView();
 			view.repaint();
 		}
-		if (e.getKeyChar() == 'd') {
-			SCollection toClear = new SCollection();
-			Iterator<Shape> iterator = this.model.iterator();
-	        while (iterator.hasNext()) {
-	        	Shape s = iterator.next();
-	        	SelectionAttributes sa = (SelectionAttributes) s.getAttributes(SelectionAttributes.ID);
-	        	if(sa.isSelected()) {
-	        		toClear.add(s);
-	        	}
-	        }
-	        toClear.clear();
-			View view = getView();
-			view.repaint();
+
+		if (e.getKeyCode() == 8) {
+			SCollection allShapes = (SCollection) this.getModel();
+			for(Shape s : allShapes.getShapes()){
+				SelectionAttributes sa = (SelectionAttributes) s.getAttributes(SelectionAttributes.ID);
+				if(sa.isSelected()){
+					allShapes.getShapes().remove(s);
+				}
+			}
+			this.getView().repaint();
 		}
 	}
 
