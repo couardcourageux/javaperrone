@@ -5,6 +5,7 @@ import graphics.shapes.ui.ShapesView;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,8 +19,13 @@ import javax.swing.border.TitledBorder;
 public class ToolBar extends JPanel implements ActionListener {
 	ShapesView sview;
 	SCollection model;
+	ShapesController controller;
 	
 	private final String RESIZE = "resize objects";
+	private final String CIRCLE = "new circle";
+	private final String TEXT = "new text";
+	private final String RECTANGLE = "new rectangle";
+	
 	private final String UNSELECT = "unselect all objects";
 	
 	
@@ -27,6 +33,8 @@ public class ToolBar extends JPanel implements ActionListener {
 		super(new BorderLayout());
 		this.sview = view;
 		this.model = model;
+		this.controller =  (ShapesController) this.sview.defaultController(this.model);
+		
 		JToolBar toolBar = new JToolBar("toolbar", JToolBar.HORIZONTAL);
 		toolBar.setBackground(Color.DARK_GRAY);
 		addButtons(toolBar);
@@ -57,18 +65,31 @@ public class ToolBar extends JPanel implements ActionListener {
 	protected void addButtons(JToolBar toolbar) {
 		this.addButton(toolbar, "resize", RESIZE, "resize a shape object");
 		this.addButton(toolbar, "unselect all", UNSELECT, "unselect all objects");
+		this.addButton(toolbar, "create circle", CIRCLE, "create circle");
+		this.addButton(toolbar, "create text", TEXT, "create text");
+		this.addButton(toolbar, "create rectangle", RECTANGLE, "create rectangle");
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
 		
 		if (cmd.equals(RESIZE)) {
-			ShapesController controller = (ShapesController) this.sview.defaultController(this.model);
-			SCollection selection = controller.getSelection();
+			
+			SCollection selection = this.controller.getSelection();
 			
 			ShapesController rs_controller = (ShapesController) this.sview.defaultController(selection);
 			
 			Resizer resizer = new Resizer(selection, this.sview, rs_controller);
+		}
+		
+		if (cmd.equals(CIRCLE)) {
+			AddCircle add = new AddCircle(this.model, this.sview, new Point(100, 100));
+		}
+		if (cmd.equals(TEXT)) {
+			AddText add = new AddText(this.model, this.sview, new Point(100, 100));
+		}
+		if (cmd.equals(RECTANGLE)) {
+			AddRectangle add = new AddRectangle(this.model, this.sview, new Point(100, 100));
 		}
 		
 	}

@@ -1,5 +1,6 @@
 package graphics.shapes.ui;
 
+
 import java.awt.BorderLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -12,19 +13,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import graphics.shapes.SCircle;
 import graphics.shapes.SCollection;
+import graphics.shapes.SRectangle;
+import graphics.shapes.SText;
 import graphics.shapes.attributes.ColorAttributes;
 
-public class AddCircle extends Add_prompt {
+public class AddText extends Add_prompt {
 	
-	public JTextField jt_r;
+	public JTextField jt_t;
 	private Point pt;
 	private JPanel jp, jp_f, jp_s;
 	
 	public JColorChooser jc;
 	
-	public AddCircle(SCollection collection, ShapesView sview, Point p) {
+	public AddText(SCollection collection, ShapesView sview, Point p) {
 		this.pt = p;
 		this.collection = collection;
 		this.sview = sview;
@@ -32,12 +34,12 @@ public class AddCircle extends Add_prompt {
 		
 		this.jf  = new JFrame();
 		this.jf.setSize(400, 200);
-		this.jf.setTitle("Add a circle");
+		this.jf.setTitle("Add a rectangle");
 		this.jf.setVisible(true);
 		
 		
-		this.jt_r = new JTextField(8);
-		this.jt_r.setText("10");
+		this.jt_t = new JTextField(64);
+		this.jt_t.setText("write here");
 		
 		this.jp = new JPanel();
 		this.jp_f = new JPanel();
@@ -49,11 +51,11 @@ public class AddCircle extends Add_prompt {
 		this.canc = new JButton("cancel");
 		
 		this.filled = new JCheckBox("filled");
-		this.filled.setSelected(true);
         this.strocked = new JCheckBox("Strocked");
+        this.strocked.setSelected(true);
         
-        this.jp.add(new JLabel("radius:"));
-        this.jp.add(jt_r);
+        this.jp.add(new JLabel("Content:"));
+        this.jp.add(jt_t);
         
         this.jp.add(filled);
         this.jp.add(strocked);
@@ -74,10 +76,10 @@ public class AddCircle extends Add_prompt {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.valid) {
-			SCircle c = new SCircle(this.pt, Integer.parseInt(jt_r.getText()));
+			SText t = new SText(this.pt, jt_t.getText());
 			
-			c.addAttributes(new ColorAttributes(filled.isSelected(), strocked.isSelected(), jc.getColor(), jc.getColor()));
-			this.collection.add(c);
+			t.addAttributes(new ColorAttributes(filled.isSelected(), strocked.isSelected(), jc.getColor(), jc.getColor()));
+			this.collection.add(t);
 			
 			this.jf.setVisible(false);
 			this.sview.invalidate();
