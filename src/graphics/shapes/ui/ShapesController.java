@@ -1,15 +1,17 @@
 package graphics.shapes.ui;
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 import java.util.Iterator;
-import java.util.TreeMap;
 
 import graphics.shapes.SText;
-import graphics.shapes.attributes.ColorAttributes;
 import graphics.ui.Controller;
 import graphics.shapes.SCollection;
+import graphics.shapes.SPolygon;
 import graphics.shapes.Shape;
+import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.attributes.DrawableAttribute;
 import graphics.shapes.attributes.SelectionAttributes;
 import graphics.ui.View;
 
@@ -18,6 +20,8 @@ import javax.swing.*;
 public class ShapesController extends Controller{
 	private SCollection model;
 	private Point lastPositionMouse;
+	private boolean drawPoly = false;
+	private SPolygon polyInProgress;
 
 	public final static String LABEL_ENTER_SCALE_FACTOR = "Salut toi";
 
@@ -54,7 +58,10 @@ public class ShapesController extends Controller{
         return selection;
 	}
 		
-	
+	public void startDrawing() {
+		drawPoly = true;
+		polyInProgress = new SPolygon();
+	}
 	public void unselectOthers(Shape selected){
 		Iterator<Shape> iterator = this.model.iterator();
         while (iterator.hasNext()) {
@@ -92,6 +99,20 @@ public class ShapesController extends Controller{
 		if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && clickedShape instanceof SText){
 			String result = JOptionPane.showInputDialog(LABEL_ENTER_SCALE_FACTOR);
 			((SText) clickedShape).setText(result);
+		}
+		System.out.println(drawPoly);
+		if(drawPoly) {
+			if(e.getClickCount() != 2) {
+				System.out.println("un point de plus pour le poly");
+				polyInProgress.poly.addPoint(mousePosition.x, mousePosition.y);
+			} else {
+				System.out.println("fin du poly");
+				drawPoly = false;
+				polyInProgress.addAttributes(new ColorAttributes(true,true,Color.RED,Color.BLUE));
+				polyInProgress.addAttributes(new SelectionAttributes());
+				polyInProgress.addAttributes(new DrawableAttribute());
+				this.model.add(polyInProgress);
+			}
 		}
 
 		this.getView().repaint();
@@ -136,39 +157,23 @@ public class ShapesController extends Controller{
 	}
 	@Override
 	public void keyPressed(KeyEvent e){
-		if (e.getKeyChar() == 's') {
+		if (e.getKeyCode() == KeyEvent.VK_S) {
 			this.model.clear();
 			System.out.println("cleared");
 			View view = getView();
 			view.repaint();
 		}
-		if (e.getKeyChar() == 'd') {
-			SCollection toClear = new SCollection();
-			Iterator<Shape> iterator = this.model.iterator();
-	        while (iterator.hasNext()) {
-	        	Shape s = iterator.next();
-	        	SelectionAttributes sa = (SelectionAttributes) s.getAttributes(SelectionAttributes.ID);
-	        	if(sa.isSelected()) {
-	        		toClear.add(s);
-	        	}
-	        }
-	        toClear.clear();
-			View view = getView();
-			view.repaint();
+
+		if (e.getKeyCode() == 8) {
+			SCollection allShapes = (SCollection) this.getModel();
+			for(Shape s : allShapes.getShapes()){
+				SelectionAttributes sa = (SelectionAttributes) s.getAttributes(SelectionAttributes.ID);
+				if(sa.isSelected()){
+					allShapes.getShapes().remove(s);
+				}
+			}
+			this.getView().repaint();
 		}
-/*		if (e.getKeyChar() == 't') {
-			System.out.println("t comme test");
-			Iterator<Shape> iterator = this.model.iterator();
-	        while (iterator.hasNext()) {
-	        	Shape s = iterator.next();
-	        	System.out.println(s);
-	        	System.out.println(s.getBounds().x);
-	        	System.out.println(s.getBounds().y);
-	        	System.out.println(s.getBounds().width);
-	        	System.out.println(s.getBounds().height);
-	        	System.out.println("fin forme");
-	        }
-		}*/
 	}
 
 }
