@@ -70,7 +70,7 @@ public class ToolBar extends JPanel implements ActionListener{
 		this.addButton(toolbar, "create text", TEXT, "create text");
 		this.addButton(toolbar, "create rectangle", RECTANGLE, "create rectangle");
 
-		this.addButton(toolbar, "polygon", POLYGON, "create a new polygon");
+		this.addButton(toolbar, "create polygon", POLYGON, "create a new polygon");
 
 	}
 
