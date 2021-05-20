@@ -3,6 +3,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 import java.util.Iterator;
+import java.util.List;
 
 import graphics.shapes.SText;
 import graphics.ui.Controller;
@@ -80,9 +81,6 @@ public class ShapesController extends Controller{
 			sa.toggleSelection();
 		}
 
-		unselectOthers(clickedShape);
-
-
 		if(clickedShape != null){
 			System.out.println(clickedShape);
 		}
@@ -143,12 +141,16 @@ public class ShapesController extends Controller{
 
 		if (e.getKeyCode() == 8) {
 			SCollection allShapes = (SCollection) this.getModel();
-			for(Shape s : allShapes.getShapes()){
-				SelectionAttributes sa = (SelectionAttributes) s.getAttributes(SelectionAttributes.ID);
+			List<Shape> listShapes = allShapes.getShapes();
+
+			for(int i=0; i<listShapes.size(); i++){
+				System.out.println(listShapes.size());
+				SelectionAttributes sa = (SelectionAttributes) listShapes.get(i).getAttributes(SelectionAttributes.ID);
 				if(sa.isSelected()){
-					allShapes.getShapes().remove(s);
+					listShapes.remove(listShapes.get(i));
 				}
 			}
+
 			this.getView().repaint();
 		}
 	}
