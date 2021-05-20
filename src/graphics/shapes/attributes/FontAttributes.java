@@ -34,6 +34,11 @@ public class FontAttributes extends Attributes {
         return new Rectangle(loc.x, loc.y-m.getHeight(), m.stringWidth(text), m.getHeight());
 	}
 	
+	public void resize(float ratio) {
+		float newSize = ratio * this.font.getSize2D();
+		this.font = this.font.deriveFont(newSize);
+	}
+	
 	@Override
 	public String getID() {
 		return FontAttributes.ID;

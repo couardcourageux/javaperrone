@@ -18,7 +18,9 @@ import javax.swing.*;
 public class ShapesController extends Controller{
 	private SCollection model;
 	private Point lastPositionMouse;
+
 	public final static String LABEL_ENTER_SCALE_FACTOR = "Salut toi";
+
 
 	public ShapesController(Object model) {
 		super(model);
@@ -35,6 +37,24 @@ public class ShapesController extends Controller{
         }
         return null;
 	}
+	
+	public SCollection getSelection() {
+		SCollection selection = new SCollection();
+		Iterator<Shape> iterator = this.model.iterator();
+        while (iterator.hasNext()) {
+        	Shape s = iterator.next();
+        	SelectionAttributes selectAtt = (SelectionAttributes)s.getAttributes("SELECTION");
+        	if (selectAtt != null) {
+        		if (selectAtt.isSelected()) {
+        			selection.add(s);
+        		}
+        	}
+            
+        }
+        return selection;
+	}
+		
+	
 	public void unselectOthers(Shape selected){
 		Iterator<Shape> iterator = this.model.iterator();
         while (iterator.hasNext()) {
@@ -49,6 +69,7 @@ public class ShapesController extends Controller{
             }
         }
 	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Point mousePosition = e.getPoint();
@@ -60,6 +81,9 @@ public class ShapesController extends Controller{
 			SelectionAttributes sa = (SelectionAttributes) clickedShape.getAttributes(SelectionAttributes.ID);
 			sa.toggleSelection();
 		}
+
+		unselectOthers(clickedShape);
+
 
 		if(clickedShape != null){
 			System.out.println(clickedShape);
@@ -110,7 +134,6 @@ public class ShapesController extends Controller{
 	public void mouseReleased(MouseEvent e){
 		setLastPositionMouse(null);
 	}
-
 	@Override
 	public void keyPressed(KeyEvent e){
 		if (e.getKeyChar() == 's') {
@@ -134,6 +157,5 @@ public class ShapesController extends Controller{
 			view.repaint();
 		}
 	}
-
 
 }
