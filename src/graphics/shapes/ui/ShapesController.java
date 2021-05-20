@@ -104,10 +104,8 @@ public class ShapesController extends Controller{
 		}
 		else {
 			if(e.getClickCount() != 2) {
-				System.out.println("un point de plus pour le poly");
 				polyInProgress.poly.addPoint(mousePosition.x, mousePosition.y);
 			} else {
-				System.out.println("fin du poly");
 				drawPoly = false;
 				polyInProgress.addAttributes(new ColorAttributes(true,true,Color.RED,Color.BLUE));
 				polyInProgress.addAttributes(new SelectionAttributes());
