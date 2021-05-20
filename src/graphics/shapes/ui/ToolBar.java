@@ -1,6 +1,8 @@
 package graphics.shapes.ui;
 import graphics.shapes.*;
-
+import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.attributes.DrawableAttribute;
+import graphics.shapes.attributes.SelectionAttributes;
 import graphics.shapes.ui.ShapesView;
 
 import java.awt.BorderLayout;
@@ -8,7 +10,6 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -16,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.border.TitledBorder;
 
-public class ToolBar extends JPanel implements ActionListener {
+public class ToolBar extends JPanel implements ActionListener{
 	ShapesView sview;
 	SCollection model;
 	ShapesController controller;
@@ -27,7 +28,7 @@ public class ToolBar extends JPanel implements ActionListener {
 	private final String RECTANGLE = "new rectangle";
 	
 	private final String UNSELECT = "unselect all objects";
-	
+	private final String POLYGON = "create a new polygon";
 	
 	public ToolBar(ShapesView view, SCollection model) {
 		super(new BorderLayout());
@@ -65,9 +66,13 @@ public class ToolBar extends JPanel implements ActionListener {
 	protected void addButtons(JToolBar toolbar) {
 		this.addButton(toolbar, "resize", RESIZE, "resize a shape object");
 		this.addButton(toolbar, "unselect all", UNSELECT, "unselect all objects");
+
 		this.addButton(toolbar, "create circle", CIRCLE, "create circle");
 		this.addButton(toolbar, "create text", TEXT, "create text");
 		this.addButton(toolbar, "create rectangle", RECTANGLE, "create rectangle");
+
+		this.addButton(toolbar, "polygon", POLYGON, "create a new polygon");
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -81,6 +86,10 @@ public class ToolBar extends JPanel implements ActionListener {
 			
 			Resizer resizer = new Resizer(selection, this.sview, rs_controller);
 		}
+		else if (cmd.equals(POLYGON)) {
+			ShapesController controller = (ShapesController) this.sview.getController();
+			controller.startDrawing();
+		}
 		
 		if (cmd.equals(CIRCLE)) {
 			AddCircle add = new AddCircle(this.model, this.sview, new Point(100, 100));
@@ -93,7 +102,7 @@ public class ToolBar extends JPanel implements ActionListener {
 		}
 		
 	}
-	
+
 	
 
 }
