@@ -65,8 +65,7 @@ public class ToolBar extends JPanel implements ActionListener{
 	
 	protected void addButtons(JToolBar toolbar) {
 		this.addButton(toolbar, "resize", RESIZE, "resize a shape object");
-		this.addButton(toolbar, "unselect all", UNSELECT, "unselect all objects");
-
+		
 		this.addButton(toolbar, "create circle", CIRCLE, "create circle");
 		this.addButton(toolbar, "create text", TEXT, "create text");
 		this.addButton(toolbar, "create rectangle", RECTANGLE, "create rectangle");
@@ -100,6 +99,8 @@ public class ToolBar extends JPanel implements ActionListener{
 		if (cmd.equals(RECTANGLE)) {
 			AddRectangle add = new AddRectangle(this.model, this.sview, new Point(100, 100));
 		}
+		
+		
 		
 	}
 

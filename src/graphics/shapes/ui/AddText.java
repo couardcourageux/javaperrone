@@ -41,7 +41,7 @@ public class AddText extends Add_prompt {
 		this.jf.setVisible(true);
 		
 		
-		this.jt_t = new JTextField(64);
+		this.jt_t = new JTextField(32);
 		this.jt_t.setText("write here");
 		
 		this.jp = new JPanel();
