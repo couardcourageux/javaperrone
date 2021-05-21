@@ -60,10 +60,6 @@ public class SCircle extends Shape {
 		v.visitCircle(this);
 	}
 
-	@Override
-	public void changeColor(Color color) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }
