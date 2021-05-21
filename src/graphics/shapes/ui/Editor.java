@@ -1,7 +1,5 @@
 package graphics.shapes.ui;
 
-//import graphics.shapes.SCircle;
-//import graphics.shapes.SCollection;
 import graphics.shapes.*;
 
 import graphics.shapes.attributes.*;
@@ -58,7 +56,7 @@ public class Editor extends JFrame
 		c.addAttributes(new SelectionAttributes());
 		this.model.add(c);
 		
-		SText t= new SText(new Point(300,300),"Bienvenue sur la version -1.0 de Paint");
+		SText t= new SText(new Point(300,300),"Bienvenue sur la version 1.0 de Paint");
 		t.addAttributes(new ColorAttributes(true,true,Color.YELLOW,Color.BLUE));
 		t.addAttributes(new FontAttributes());
 		t.addAttributes(new SelectionAttributes());
