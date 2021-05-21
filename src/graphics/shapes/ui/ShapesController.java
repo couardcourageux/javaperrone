@@ -26,7 +26,8 @@ public class ShapesController extends Controller{
 	private boolean drawPoly = false;
 	private SPolygon polyInProgress;
 
-	public final static String LABEL_ENTER_SCALE_FACTOR = "Salut toi";
+	public final static String LABEL_ENTER_NEW_VALUE_TEXT = "Que souhaitez vous mettre comme texte ?";
+	public final static String LABEL_TITLE_NEW_TEXT = "Changement de texte";
 
 
 	public ShapesController(Object model) {
@@ -98,7 +99,8 @@ public class ShapesController extends Controller{
 			}
 	
 			if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && clickedShape instanceof SText){
-				String result = JOptionPane.showInputDialog(LABEL_ENTER_SCALE_FACTOR);
+				String defaultValue = ((SText) clickedShape).getText();
+				String result = JOptionPane.showInputDialog(null, LABEL_ENTER_NEW_VALUE_TEXT, LABEL_TITLE_NEW_TEXT, JOptionPane.QUESTION_MESSAGE);
 				((SText) clickedShape).setText(result);
 			}
 		}
