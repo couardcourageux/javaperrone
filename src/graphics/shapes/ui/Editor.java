@@ -48,17 +48,17 @@ public class Editor extends JFrame
 		this.model = new SCollection();
 		this.model.addAttributes(new SelectionAttributes());
 		
-		SRectangle r = new SRectangle(new Point(200,200),20,30);
+		SRectangle r = new SRectangle(new Point(200,200),100,40);
 		r.addAttributes(new ColorAttributes(true,false,Color.BLUE,Color.BLUE));
 		r.addAttributes(new SelectionAttributes());
 		this.model.add(r);
 		
-		SCircle c = new SCircle(new Point(100,100),10);
+		SCircle c = new SCircle(new Point(150,300),30);
 		c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.BLUE));
 		c.addAttributes(new SelectionAttributes());
 		this.model.add(c);
 		
-		SText t= new SText(new Point(200,200),"WOAW");
+		SText t= new SText(new Point(300,300),"Bienvenue sur la version -1.0 de Paint");
 		t.addAttributes(new ColorAttributes(true,true,Color.YELLOW,Color.BLUE));
 		t.addAttributes(new FontAttributes());
 		t.addAttributes(new SelectionAttributes());
@@ -66,11 +66,11 @@ public class Editor extends JFrame
 		
 		SCollection sc = new SCollection();
 		sc.addAttributes(new SelectionAttributes());
-		r= new SRectangle(new Point(20,30),30,30);
+		r= new SRectangle(new Point(100,40),30,40);
 		r.addAttributes(new ColorAttributes(true,false,Color.MAGENTA,Color.BLUE));
 		r.addAttributes(new SelectionAttributes());
 		sc.add(r);
-		c = new SCircle(new Point(150,100),30);
+		c = new SCircle(new Point(300,100),30);
 		c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.DARK_GRAY));
 		c.addAttributes(new SelectionAttributes());
 		sc.add(c);
