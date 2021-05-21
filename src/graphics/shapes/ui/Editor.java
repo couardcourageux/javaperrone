@@ -62,7 +62,7 @@ public class Editor extends JFrame
 		t.addAttributes(new ColorAttributes(true,true,Color.YELLOW,Color.BLUE));
 		t.addAttributes(new FontAttributes());
 		t.addAttributes(new SelectionAttributes());
-		this.model.add(t);
+		this.model.add(t); 
 		
 		SCollection sc = new SCollection();
 		sc.addAttributes(new SelectionAttributes());

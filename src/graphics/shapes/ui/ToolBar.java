@@ -21,7 +21,7 @@ public class ToolBar extends JPanel implements ActionListener {
 	
 	private final String RESIZE = "resize objects";
 	private final String UNSELECT = "unselect all objects";
-	
+	private final String CHG_COLOR = "change color";
 	
 	public ToolBar(ShapesView view, SCollection model) {
 		super(new BorderLayout());
@@ -57,6 +57,7 @@ public class ToolBar extends JPanel implements ActionListener {
 	protected void addButtons(JToolBar toolbar) {
 		this.addButton(toolbar, "resize", RESIZE, "resize a shape object");
 		this.addButton(toolbar, "unselect all", UNSELECT, "unselect all objects");
+		this.addButton(toolbar, "fill", CHG_COLOR, "change the color of th selected object");
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -69,6 +70,16 @@ public class ToolBar extends JPanel implements ActionListener {
 			ShapesController rs_controller = (ShapesController) this.sview.defaultController(selection);
 			
 			Resizer resizer = new Resizer(selection, this.sview, rs_controller);
+		}
+		else if (cmd.equals(CHG_COLOR)) {
+			ShapesController controller = (ShapesController) this.sview.defaultController(this.model);
+			SCollection selection = controller.getSelection();
+			
+			ShapesController rs_controller = (ShapesController) this.sview.defaultController(selection);
+			
+			ColorChanger colorchanger = new ColorChanger(selection, this.sview, rs_controller);
+			
+			
 		}
 		
 	}

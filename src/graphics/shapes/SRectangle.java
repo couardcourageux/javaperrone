@@ -1,6 +1,7 @@
 package graphics.shapes;
 
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -53,5 +54,11 @@ public class SRectangle extends Shape {
 	@Override
 	public void accept(ShapeVisitor v) {
 		v.visitRectangle(this);
+	}
+
+	@Override
+	public void changeColor(Color color) {
+		// TODO Auto-generated method stub
+		
 	}
 }

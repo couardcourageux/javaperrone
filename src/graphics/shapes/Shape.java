@@ -1,5 +1,6 @@
 package graphics.shapes;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Map;
@@ -25,4 +26,5 @@ public abstract class Shape {
 	public abstract Rectangle getBounds();
 	public abstract void accept(ShapeVisitor visitor);
 	public abstract void resize(float ratio);
+	public abstract void changeColor(Color color);
 }

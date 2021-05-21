@@ -1,5 +1,6 @@
 package graphics.shapes;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Polygon;
@@ -70,5 +71,11 @@ public class SPolygon extends Shape{
 	@Override
 	public void accept(ShapeVisitor v) {
 		v.visitPolygon(this);
+	}
+
+	@Override
+	public void changeColor(Color color) {
+		// TODO Auto-generated method stub
+		
 	}
 }

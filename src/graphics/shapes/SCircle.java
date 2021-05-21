@@ -1,5 +1,6 @@
 package graphics.shapes;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -57,6 +58,12 @@ public class SCircle extends Shape {
 	@Override
 	public void accept(ShapeVisitor v) {
 		v.visitCircle(this);
+	}
+
+	@Override
+	public void changeColor(Color color) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -1,5 +1,6 @@
 package graphics.shapes;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -69,6 +70,11 @@ public class SCollection extends Shape {
 
 	public void clear() {
 		this.collection.clear();
+		
+	}
+
+	@Override
+	public void changeColor(Color color) {
 		
 	}
 
