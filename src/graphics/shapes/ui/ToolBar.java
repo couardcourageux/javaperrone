@@ -1,13 +1,15 @@
 package graphics.shapes.ui;
 import graphics.shapes.*;
-
+import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.attributes.DrawableAttribute;
+import graphics.shapes.attributes.SelectionAttributes;
 import graphics.shapes.ui.ShapesView;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -15,18 +17,32 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.border.TitledBorder;
 
-public class ToolBar extends JPanel implements ActionListener {
+public class ToolBar extends JPanel implements ActionListener{
 	ShapesView sview;
 	SCollection model;
+	ShapesController controller;
 	
 	private final String RESIZE = "resize objects";
-	private final String UNSELECT = "unselect all objects";
-	private final String CHG_COLOR = "change color";
+	private final String UNSELECT = "unselect all objects";	
+	private final String CHG_COLOR = "fill";
+
+	
+	private final String CIRCLE = "new circle";
+	private final String TEXT = "new text";
+	private final String RECTANGLE = "new rectangle";
+	private final String POLYGON = "create a new polygon";
+	
+	private final int DEFAULT_POS_X = 100;
+	private final int DEFAULT_POS_Y = 100;
+	
+//>>>>>>> branch 'master' of https://github.com/couardcourageux/javaperrone.git
 	
 	public ToolBar(ShapesView view, SCollection model) {
 		super(new BorderLayout());
 		this.sview = view;
 		this.model = model;
+		this.controller =  (ShapesController) this.sview.defaultController(this.model);
+		
 		JToolBar toolBar = new JToolBar("toolbar", JToolBar.HORIZONTAL);
 		toolBar.setBackground(Color.DARK_GRAY);
 		addButtons(toolBar);
@@ -55,22 +71,31 @@ public class ToolBar extends JPanel implements ActionListener {
 	}
 	
 	protected void addButtons(JToolBar toolbar) {
-		this.addButton(toolbar, "resize", RESIZE, "resize a shape object");
-		this.addButton(toolbar, "unselect all", UNSELECT, "unselect all objects");
-		this.addButton(toolbar, "fill", CHG_COLOR, "change the color of th selected object");
+
+		this.addButton(toolbar, RESIZE, RESIZE, RESIZE);
+		
+		this.addButton(toolbar, CIRCLE, CIRCLE, CIRCLE);
+		this.addButton(toolbar, TEXT, TEXT, TEXT);
+		this.addButton(toolbar, RECTANGLE, RECTANGLE, RECTANGLE);
+
+		this.addButton(toolbar, POLYGON, POLYGON, POLYGON);
+		this.addButton(toolbar, CHG_COLOR, CHG_COLOR, CHG_COLOR);
+
+
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
 		
 		if (cmd.equals(RESIZE)) {
-			ShapesController controller = (ShapesController) this.sview.defaultController(this.model);
-			SCollection selection = controller.getSelection();
+			
+			SCollection selection = this.controller.getSelection();
 			
 			ShapesController rs_controller = (ShapesController) this.sview.defaultController(selection);
 			
 			Resizer resizer = new Resizer(selection, this.sview, rs_controller);
 		}
+
 		else if (cmd.equals(CHG_COLOR)) {
 			ShapesController controller = (ShapesController) this.sview.defaultController(this.model);
 			SCollection selection = controller.getSelection();
@@ -81,9 +106,21 @@ public class ToolBar extends JPanel implements ActionListener {
 			
 			
 		}
-		
-	}
-	
-	
 
+		else if (cmd.equals(POLYGON)) {
+			ShapesController controller = (ShapesController) this.sview.getController();
+			controller.startDrawing();
+		}
+		
+		if (cmd.equals(CIRCLE)) {
+			AddCircle add = new AddCircle(this.model, this.sview, new Point(DEFAULT_POS_X, DEFAULT_POS_Y));
+		}
+		if (cmd.equals(TEXT)) {
+			AddText add = new AddText(this.model, this.sview, new Point(DEFAULT_POS_X, DEFAULT_POS_Y));
+		}
+		if (cmd.equals(RECTANGLE)) {
+			AddRectangle add = new AddRectangle(this.model, this.sview, new Point(DEFAULT_POS_X, DEFAULT_POS_Y));
+		}
+	}
 }
+	

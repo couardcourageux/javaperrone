@@ -60,12 +60,16 @@ public class SPolygon extends Shape{
 		for(int i = 0; i< this.poly.npoints; i++) {
 			if (this.poly.ypoints[i] < minY) minY = this.poly.ypoints[i];
 		}
-		return new Rectangle(minX, minY, maxX, maxY);
+		return new Rectangle(minX, minY, maxX-minX, maxY-minY);
 	}
 	
 	@Override
 	public void resize(float ratio) {
-		
+		Rectangle rect = this.getBounds();
+		for(int i = 0; i< this.poly.npoints; i++) {
+			this.poly.xpoints[i] = rect.x + (int) ((this.poly.xpoints[i]-rect.x) * ratio);
+			this.poly.ypoints[i] = rect.y + (int) ((this.poly.ypoints[i]-rect.y) * ratio);
+		}
 	}
 	
 	@Override
