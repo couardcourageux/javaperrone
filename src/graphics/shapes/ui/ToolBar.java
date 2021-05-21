@@ -24,7 +24,7 @@ public class ToolBar extends JPanel implements ActionListener{
 	
 	private final String RESIZE = "resize objects";
 	private final String UNSELECT = "unselect all objects";	
-	private final String CHG_COLOR = "fill";
+	private final String CHG_COLOR = "change color";
 
 	
 	private final String CIRCLE = "new circle";

@@ -23,7 +23,6 @@ public class ColorChanger extends JPanel implements ChangeListener {
 	protected JColorChooser jcc;
 	private SCollection selection;
 	private ShapesView sview;
-	private Color newColor;
 	
 	public ColorChanger(SCollection selection, ShapesView sview, ShapesController rs_controller) {
 		this.selection = selection;
@@ -41,8 +40,8 @@ public class ColorChanger extends JPanel implements ChangeListener {
 	public void stateChanged(ChangeEvent e) {
 		Color color = jcc.getColor();
 		for(graphics.shapes.Shape s : this.selection.getShapes()) {
-			newColor = color;
-			((graphics.shapes.Shape) s).addAttributes(new ColorAttributes(true, true, color, color));
+			ColorAttributes ca = (ColorAttributes) s.getAttributes(ColorAttributes.ID); 
+			((graphics.shapes.Shape) s).addAttributes(new ColorAttributes(ca.filled, ca.stroked, color, color));
 			
 		}
 		
