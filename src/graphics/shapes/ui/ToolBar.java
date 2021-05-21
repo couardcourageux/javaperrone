@@ -30,6 +30,10 @@ public class ToolBar extends JPanel implements ActionListener{
 	private final String RECTANGLE = "new rectangle";
 	private final String POLYGON = "create a new polygon";
 	
+	private final int DEFAULT_POS_X = 100;
+	private final int DEFAULT_POS_Y = 100;
+	
+	
 	public ToolBar(ShapesView view, SCollection model) {
 		super(new BorderLayout());
 		this.sview = view;
@@ -64,13 +68,14 @@ public class ToolBar extends JPanel implements ActionListener{
 	}
 	
 	protected void addButtons(JToolBar toolbar) {
-		this.addButton(toolbar, "resize", RESIZE, "resize a shape object");
+		this.addButton(toolbar, RESIZE, RESIZE, RESIZE);
 		
-		this.addButton(toolbar, "create circle", CIRCLE, "create circle");
-		this.addButton(toolbar, "create text", TEXT, "create text");
-		this.addButton(toolbar, "create rectangle", RECTANGLE, "create rectangle");
+		this.addButton(toolbar, CIRCLE, CIRCLE, CIRCLE);
+		this.addButton(toolbar, TEXT, TEXT, TEXT);
+		this.addButton(toolbar, RECTANGLE, RECTANGLE, RECTANGLE);
 
-		this.addButton(toolbar, "create polygon", POLYGON, "create a new polygon");
+		this.addButton(toolbar, POLYGON, POLYGON, POLYGON);
+		
 
 	}
 
@@ -91,13 +96,13 @@ public class ToolBar extends JPanel implements ActionListener{
 		}
 		
 		if (cmd.equals(CIRCLE)) {
-			AddCircle add = new AddCircle(this.model, this.sview, new Point(100, 100));
+			AddCircle add = new AddCircle(this.model, this.sview, new Point(DEFAULT_POS_X, DEFAULT_POS_Y));
 		}
 		if (cmd.equals(TEXT)) {
-			AddText add = new AddText(this.model, this.sview, new Point(100, 100));
+			AddText add = new AddText(this.model, this.sview, new Point(DEFAULT_POS_X, DEFAULT_POS_Y));
 		}
 		if (cmd.equals(RECTANGLE)) {
-			AddRectangle add = new AddRectangle(this.model, this.sview, new Point(100, 100));
+			AddRectangle add = new AddRectangle(this.model, this.sview, new Point(DEFAULT_POS_X, DEFAULT_POS_Y));
 		}
 		
 		
