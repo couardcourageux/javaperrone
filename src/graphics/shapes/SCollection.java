@@ -73,9 +73,6 @@ public class SCollection extends Shape {
 		
 	}
 
-	@Override
-	public void changeColor(Color color) {
-		
-	}
+	
 
 }

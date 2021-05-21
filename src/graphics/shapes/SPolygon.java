@@ -77,9 +77,5 @@ public class SPolygon extends Shape{
 		v.visitPolygon(this);
 	}
 
-	@Override
-	public void changeColor(Color color) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

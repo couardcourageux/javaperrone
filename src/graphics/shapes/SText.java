@@ -1,5 +1,6 @@
 package graphics.shapes;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -68,5 +69,7 @@ public class SText extends Shape {
 	public void accept(ShapeVisitor v) {
 		v.visitText(this);
 	}
+
+	
 
 }

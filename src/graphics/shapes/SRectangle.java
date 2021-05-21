@@ -56,9 +56,5 @@ public class SRectangle extends Shape {
 		v.visitRectangle(this);
 	}
 
-	@Override
-	public void changeColor(Color color) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
