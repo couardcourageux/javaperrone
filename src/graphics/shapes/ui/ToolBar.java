@@ -35,7 +35,7 @@ public class ToolBar extends JPanel implements ActionListener{
 	private final int DEFAULT_POS_X = 100;
 	private final int DEFAULT_POS_Y = 100;
 	
-//>>>>>>> branch 'master' of https://github.com/couardcourageux/javaperrone.git
+
 	
 	public ToolBar(ShapesView view, SCollection model) {
 		super(new BorderLayout());
