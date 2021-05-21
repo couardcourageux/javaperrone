@@ -29,6 +29,10 @@ public class AddText extends Add_prompt {
 	
 	public JColorChooser jc;
 	
+	private final String TITLE = "Add a text";
+	private final String FIELD1_LABEL = "content:";	
+	private final String FIELD1_DEFAULT = "write here";
+	
 	public AddText(SCollection collection, ShapesView sview, Point p) {
 		this.pt = p;
 		this.collection = collection;
@@ -36,13 +40,13 @@ public class AddText extends Add_prompt {
 		
 		
 		this.jf  = new JFrame();
-		this.jf.setSize(800, 400);
-		this.jf.setTitle("Add a rectangle");
+		this.jf.setSize(PROMPT_DEFAULT_SIZE_X, PROMPT_DEFAULT_SIZE_Y);
+		this.jf.setTitle(TITLE);
 		this.jf.setVisible(true);
 		
 		
-		this.jt_t = new JTextField(32);
-		this.jt_t.setText("write here");
+		this.jt_t = new JTextField(STRING_FIELD_SIZE);
+		this.jt_t.setText(FIELD1_DEFAULT);
 		
 		this.jp = new JPanel();
 		this.jp_f = new JPanel();
@@ -50,14 +54,14 @@ public class AddText extends Add_prompt {
 		
 		this.jc = new JColorChooser();
 		
-		this.valid = new JButton("OK");
-		this.canc = new JButton("cancel");
+		this.valid = new JButton(VALID_VAL);
+		this.canc = new JButton(CANC_VAL);
 		
-		this.filled = new JCheckBox("filled");
-        this.strocked = new JCheckBox("Strocked");
-        this.strocked.setSelected(true);
+		this.filled = new JCheckBox(FILLED_VAL);
+        this.strocked = new JCheckBox(STROCKED_VAL);
+        this.strocked.setSelected(STROCKED_DEFAULT);
         
-        this.jp.add(new JLabel("Content:"));
+        this.jp.add(new JLabel(FIELD1_LABEL));
         this.jp.add(jt_t);
         
         this.jp.add(filled);

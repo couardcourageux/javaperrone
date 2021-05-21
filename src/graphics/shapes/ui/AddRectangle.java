@@ -26,6 +26,9 @@ public class AddRectangle extends Add_prompt {
 	private JPanel jp, jp_f, jp_s;
 	
 	public JColorChooser jc;
+	private final String TITLE = "Add a rectangle";
+	private final String FIELD1_LABEL = "height:";
+	private final String FIELD2_LABEL = "width:";
 	
 	public AddRectangle(SCollection collection, ShapesView sview, Point p) {
 		this.pt = p;
@@ -34,15 +37,15 @@ public class AddRectangle extends Add_prompt {
 		
 		
 		this.jf  = new JFrame();
-		this.jf.setSize(800, 400);
-		this.jf.setTitle("Add a rectangle");
+		this.jf.setSize(PROMPT_DEFAULT_SIZE_X, PROMPT_DEFAULT_SIZE_Y);
+		this.jf.setTitle(TITLE);
 		this.jf.setVisible(true);
 		
 		
-		this.jt_h = new JTextField(8);
-		this.jt_h.setText("10");
-		this.jt_w = new JTextField(8);
-		this.jt_w.setText("10");
+		this.jt_h = new JTextField(INT_FIELD_SIZE);
+		this.jt_h.setText(INT_FIELD_DEFAULT);
+		this.jt_w = new JTextField(INT_FIELD_SIZE);
+		this.jt_w.setText(INT_FIELD_DEFAULT);
 		
 		this.jp = new JPanel();
 		this.jp_f = new JPanel();
@@ -50,16 +53,16 @@ public class AddRectangle extends Add_prompt {
 		
 		this.jc = new JColorChooser();
 		
-		this.valid = new JButton("OK");
-		this.canc = new JButton("cancel");
+		this.valid = new JButton(VALID_VAL);
+		this.canc = new JButton(CANC_VAL);
 		
-		this.filled = new JCheckBox("filled");
-		this.filled.setSelected(true);
-        this.strocked = new JCheckBox("Strocked");
+		this.filled = new JCheckBox(FILLED_VAL);
+		this.filled.setSelected(FILLED_DEFAULT);
+        this.strocked = new JCheckBox(STROCKED_VAL);
         
-        this.jp.add(new JLabel("height:"));
+        this.jp.add(new JLabel(FIELD1_LABEL));
         this.jp.add(jt_h);
-        this.jp.add(new JLabel("width:"));
+        this.jp.add(new JLabel(FIELD2_LABEL));
         this.jp.add(jt_w);
         
         this.jp.add(filled);

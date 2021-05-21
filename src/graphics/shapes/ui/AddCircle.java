@@ -26,6 +26,10 @@ public class AddCircle extends Add_prompt {
 	
 	public JColorChooser jc;
 	
+	private final String TITLE = "Add a circle";
+	private final String FIELD1_LABEL = "radius:";	
+	
+	
 	public AddCircle(SCollection collection, ShapesView sview, Point p) {
 		this.pt = p;
 		this.collection = collection;
@@ -33,13 +37,13 @@ public class AddCircle extends Add_prompt {
 		
 		
 		this.jf  = new JFrame();
-		this.jf.setSize(800, 400);
-		this.jf.setTitle("Add a circle");
+		this.jf.setSize(PROMPT_DEFAULT_SIZE_X, PROMPT_DEFAULT_SIZE_Y);
+		this.jf.setTitle(TITLE);
 		this.jf.setVisible(true);
 		
 		
-		this.jt_r = new JTextField(8);
-		this.jt_r.setText("10");
+		this.jt_r = new JTextField(INT_FIELD_SIZE);
+		this.jt_r.setText(INT_FIELD_DEFAULT);
 		
 		this.jp = new JPanel();
 		this.jp_f = new JPanel();
@@ -47,14 +51,14 @@ public class AddCircle extends Add_prompt {
 		
 		this.jc = new JColorChooser();
 		
-		this.valid = new JButton("OK");
-		this.canc = new JButton("cancel");
+		this.valid = new JButton(VALID_VAL);
+		this.canc = new JButton(CANC_VAL);
 		
-		this.filled = new JCheckBox("filled");
-		this.filled.setSelected(true);
-        this.strocked = new JCheckBox("Strocked");
+		this.filled = new JCheckBox(FILLED_VAL);
+		this.filled.setSelected(FILLED_DEFAULT);
+        this.strocked = new JCheckBox(STROCKED_VAL);
         
-        this.jp.add(new JLabel("radius:"));
+        this.jp.add(new JLabel(FIELD1_LABEL));
         this.jp.add(jt_r);
         
         this.jp.add(filled);
