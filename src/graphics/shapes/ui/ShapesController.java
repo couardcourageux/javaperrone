@@ -156,11 +156,11 @@ public class ShapesController extends Controller{
 	public void mouseReleased(MouseEvent e){
 		setLastPositionMouse(null);
 	}
+
 	@Override
 	public void keyPressed(KeyEvent e){
 		if (e.getKeyCode() == KeyEvent.VK_S) {
 			this.model.clear();
-			System.out.println("cleared");
 			View view = getView();
 			view.repaint();
 		}
@@ -177,8 +177,6 @@ public class ShapesController extends Controller{
 					listShapes.remove(listShapes.get(i));
 				}
 			}
-			
-
 			this.getView().repaint();
 		}
 	}
