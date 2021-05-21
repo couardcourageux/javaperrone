@@ -28,7 +28,7 @@ public class ColorChanger extends JPanel implements ChangeListener {
 	public ColorChanger(SCollection selection, ShapesView sview, ShapesController rs_controller) {
 		this.selection = selection;
     	this.sview = sview;
-        jcc = new JColorChooser();
+        jcc = new JColorChooser(); 
         jcc.getSelectionModel().addChangeListener(this);        
         JFrame frame = new JFrame("ColorChanger");
         frame.add(jcc);
